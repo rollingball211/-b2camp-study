@@ -18,7 +18,7 @@ public class Exam0250 {
     
     System.out.printf("%d, %s, %b\n", age, name, working);
   }
-}
+} 
 
 
 
