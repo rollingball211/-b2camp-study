@@ -1,7 +1,7 @@
 package pms01b;
 
+import java.sql.Date;
 import java.util.Scanner;
-
 public class Test2 {
 /*
  번호는 int 변수에 받고, 시작일과 종료일은 java.sql.Date 변수에 받는다.
@@ -28,39 +28,65 @@ public class Test2 {
 ```
  */
   public static void main(String[] args) {
+    int i = 0;
+    final int MAX_LENGTH =100;
+    int size = 0;
+    
+    int [] no = new int[MAX_LENGTH];
+    String [] pname = new String[MAX_LENGTH];
+    String [] contents = new String[MAX_LENGTH];
+    String [] creator = new String[MAX_LENGTH];
+    String [] teamMate = new String[MAX_LENGTH];
+    Date [] startDate = new Date[MAX_LENGTH];
+    Date [] endDate = new Date[MAX_LENGTH];
 
     Scanner sc = new Scanner(System.in);
-    System.out.println("번호?");
-    int no= sc.nextInt();
     
-   sc.nextLine();
+    for (i=0; i<MAX_LENGTH; i++) {
+    size ++;
+    System.out.println("번호?");
+    no[i]= Integer.parseInt(sc.nextLine());
     
     System.out.println("프로젝트명?");
-    String pname = sc.nextLine();
+    pname[i] = sc.nextLine();
     
     System.out.println("내용");
-    String memo = sc.nextLine();
+    contents[i] = sc.nextLine();
     
-  
-    System.out.println("시작일");
-    String sDay= sc.nextLine();
-    
-    System.out.println("종료일 ");
-    String eDay = sc.nextLine();
-    
+ 
+    System.out.print("시작일? ");
+    startDate[i] = Date.valueOf(sc.nextLine());
+
+    System.out.print("종료일? ");
+    endDate[i] = Date.valueOf(sc.nextLine());
+
    
    // sc.nextLine();
     
     System.out.println("만든이");
-    String author = sc.nextLine();
+    creator[i] = sc.nextLine();
     System.out.println("팀원");
-    String TeamMate= sc.nextLine();
+    teamMate[i]= sc.nextLine();
     
-  //  sc.nextLine();
-    System.out.printf("번호 : %d , 프로젝트명: %s 내용: %s \n",no,pname,memo);
-    System.out.println("시작일: " + sDay);
-    System.out.println("종료일: " + eDay);
-     System.out.printf("만든이: %s, 팀원: %s ",author,TeamMate);
+    System.out.println("추가로 입력하시겠습니까? (Y/N)");
+    String answer = sc.nextLine();
+    if(answer.equalsIgnoreCase("N")) {
+      break;
+      }
+    System.out.println();
+    }
+    
+    for(i=0; i<size; i++) {
+      System.out.println("번호 : " + no[i]
+                        + "프로젝트명: " + pname[i]
+                        + " 내용: " + contents[i]
+                        +" 시작일: " + startDate[i]
+                        +" 종료일: " + endDate[i]
+                        +" 만든이: " + creator[i]
+                        +" 팀원: "   + teamMate[i]
+                        );
+    }
+   
     
      sc.close();
     

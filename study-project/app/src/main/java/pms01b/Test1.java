@@ -1,8 +1,10 @@
 package pms01b;
 
+import java.util.Date;
 import java.util.Scanner;
 
 public class Test1 {
+
 /*
 Q1.
 
@@ -23,37 +25,62 @@ Q1.
 전화: 010-1111-2222
 가입일: 2020-03-05   <== 가입일은 회원 정보를 입력 받은 시간을 보관했다가 출력한다.
 ```
+
+6)조회용으로 사용할 변수라면 final 사용 (상수)
 */
   public static void main(String[] args) {
-    java.util.Date today = new java.util.Date();
+    final int MAX_LENGTH = 100;
+    int i =0;
     Scanner sc = new Scanner(System.in);
-    System.out.println("번호?");
-    int no= sc.nextInt();
+ 
+    int[] no = new int[MAX_LENGTH];
+    String[] name = new String[MAX_LENGTH];
+    String[] email = new String[MAX_LENGTH];
+    String[] password = new String[MAX_LENGTH];
+    String[] photo = new String[MAX_LENGTH];
+    String[] tel = new String[MAX_LENGTH];
+    Date[] registeredDate = new Date[MAX_LENGTH];
     
-   sc.nextLine();
+    int size =0 ;
+    for (i=0; i<MAX_LENGTH;i++) {
+      
+    size++;
+    System.out.println("번호?: ");
+    no[i]= Integer.parseInt(sc.nextLine()); 
+    System.out.println("이름?: ");
+    name[i] = sc.nextLine();
+    System.out.println("이메일: ");
+    email[i] = sc.nextLine();
+    System.out.println("암호: ");
+    password[i] = sc.nextLine();
+    System.out.println("사진: ");
+    photo[i] = sc.nextLine();
+    System.out.println("전화: ");
+    tel[i] = sc.nextLine();
+    registeredDate[i] = new Date();
+    System.out.println();
+   
+    System.out.println("계속 입력하시겠습니까? (Y/N)");
+    String input = sc.nextLine();
+    if (input.equalsIgnoreCase("n")){
+      break;
+    }
+    System.out.println();
+   }
     
-    System.out.println("이름?");
-    String name = sc.nextLine();
-    
-    System.out.println("이메일");
-    String email = sc.nextLine();
-    
-    System.out.println("암호");
-    String password = sc.nextLine();
-    
-   // sc.nextLine();
-    System.out.println("사진");
-    String pic = sc.nextLine();
-    System.out.println("전화");
-    String telno = sc.nextLine();
-    
-  //  sc.nextLine();
-    System.out.printf("번호 : %d , 이름: %s 이메일: %s 암호: %s 사진: %s 전화: %s",no,name,email,
-        password,pic,telno);
-    
-    System.out.printf(" 가입일 : %1$tY-%1$tm-%1$td %1$tH:%1$tM:%1$tS\n", today);
-    
-    sc.close();
+   sc.close();
+ 
+for (i=0; i<size; i++) {
+  System.out.println("번호: "+ no[i] + 
+                     "이름: " + name[i] + 
+                     "이메일: " +email[i] + 
+                     "암호: "+ password[i]+ 
+                     "사진: " + photo[i]+ 
+                     "전화: " + tel[i]);
+  System.out.printf("가입일: %tY-%1$tm-%1$td\n",registeredDate[i]);
+}
+
+ 
   }
 
 }

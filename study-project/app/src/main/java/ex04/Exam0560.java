@@ -1,5 +1,4 @@
-package com.eomcs.lang.ex04;
-
+package ex04;
 //# 배열 - 배열 메모리의 기본 값
 //
 public class Exam0560 {
