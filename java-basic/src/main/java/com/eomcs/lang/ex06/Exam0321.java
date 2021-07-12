@@ -1,4 +1,4 @@
-package com.eomcs.ex06;
+package com.eomcs.lang.ex06;
 
 //# 흐름 제어문 - break와 continue 활용
 //
@@ -34,3 +34,4 @@ public class Exam0321 {
     System.out.printf("count=%d, sum=%d\n", count, sum);
   }
 }
+

@@ -19,6 +19,13 @@ public class Exam0340 {
       i += 1;
       System.out.println(i);
     } while (i < 10);
+
+    i=0;
+    do {
+      i+=1;
+      System.out.println(i);
+    }while(i<0);
+    System.out.println(i);
   }
 }
 

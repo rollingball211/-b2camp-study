@@ -1,4 +1,4 @@
-package com.eomcs.ex06;
+package com.eomcs.lang.ex06;
 
 //# 흐름 제어문 - if 문의 조건
 //
@@ -30,7 +30,7 @@ public class Exam0130 {
 
 
 
-
+ 
 
 
 

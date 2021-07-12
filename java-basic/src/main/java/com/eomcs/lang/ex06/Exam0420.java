@@ -20,7 +20,9 @@ public class Exam0420 {
     for (x = 1; x <= 5; x++) 
       System.out.println(x);
     System.out.printf("x = %d\n", x);
+ 
   }
+  
 }
 
 
