@@ -12,7 +12,8 @@ import java.util.Scanner;
 //7) /member/add 명령 처리
 //8) /member/list 명령 처리
 //9) /project/add 명령 처리.
-public class App1_h {
+//10)/project/list 명령 처리
+public class App1_i {
 
   public static void main(String[] args) {
     final int MAX_LENGTH = 100;
@@ -106,7 +107,13 @@ public class App1_h {
         members[pSize] = sc.nextLine();
 
         pSize++;
-      }  else {
+      }else if(input.equals("/project/list")){
+        for (i = 0; i < pSize; i++) {
+          // 번호, 프로젝트명, 시작일, 종료일, 만든이
+          System.out.printf("%d, %s, %s, %s, %s\n", // 출력 형식 지정
+              no[i], title[i], startDate[i], endDate[i], owner[i]);
+        }
+      } else {
       System.out.println("실행할 수 없는 명령입니다.");
       }
 
