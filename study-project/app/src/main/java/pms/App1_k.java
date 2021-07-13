@@ -14,7 +14,8 @@ import java.util.Scanner;
 //9) /project/add 명령 처리.
 //10)/project/list 명령 처리
 //11)/task/add 명령 처리
-public class App1_i {
+//12)/task/list 명령 처리
+public class App1_k {
 
   public static void main(String[] args) {
     final int MAX_LENGTH = 100;
@@ -41,14 +42,20 @@ public class App1_i {
     Date[] endDate = new Date[PLENGTH];
     String[] owner = new String[PLENGTH];
     String[] members = new String[PLENGTH];
+ 
+    int[] status = new int[PLENGTH];
 
+ final int LENGTH = 100;
+    
+    int[] tno = new int[LENGTH];
+    String[] tcontent = new String[LENGTH];
+    Date[] tdeadline = new Date[LENGTH];
+    String[] towner = new String[LENGTH];
+    int[] tstatus = new int[LENGTH];
   
     
     int pSize =0 ;
-    
-
-  
-
+    int tSize =0;
     
     while(true) {
     System.out.print("명령 > ");
@@ -112,7 +119,7 @@ public class App1_i {
         members[pSize] = sc.nextLine();
 
         pSize++;
-      }else if(input.equals("/project/list")) {
+      }else if(input.equals("/project/list")){
         System.out.println("프로젝트 목록");
         for (i = 0; i < pSize; i++) {
           // 번호, 프로젝트명, 시작일, 종료일, 만든이
@@ -120,9 +127,43 @@ public class App1_i {
               pno[i], title[i], startDate[i], endDate[i], owner[i]);
         }
       }else if(input.equals("/task/add")) {
-        
+        System.out.println("작업 상태");
+        System.out.println("상태?");
+        System.out.println("0: 신규");
+        System.out.println("1: 진행중");
+        System.out.println("2: 완료");
+        System.out.print("> ");
+        status[tSize] = Integer.valueOf(sc.nextLine());
+
+        System.out.print("담당자? ");
+        owner[tSize] = sc.nextLine();
+
+        tSize++;
+        System.out.println(); // 빈 줄 출력
       
-      } else {
+      }else if(input.equals("/task/list")){
+        System.out.println("--------------------------------");
+
+        System.out.printf("[%s]\n", title[tSize]);
+
+        for (i = 0; i < tSize; i++) {
+          String stateLabel = null;
+          switch (status[i]) {
+            case 1:
+              stateLabel = "진행중";
+              break;
+            case 2:
+              stateLabel = "완료";
+              break;
+            default:
+              stateLabel = "신규";
+          }
+          // 번호, 작업명, 마감일, 프로젝트, 상태, 담당자
+          System.out.printf("%d, %s, %s, %s, %s\n", // 출력 형식 지정
+              pno[i], tcontent[i], tdeadline[i], stateLabel, towner[i]);
+        
+      } 
+      }else {
       System.out.println("실행할 수 없는 명령입니다.");
       }
 

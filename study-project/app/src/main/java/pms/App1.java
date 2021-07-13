@@ -1,15 +1,17 @@
 package pms;
 
+import java.sql.Date;
 import java.util.Scanner;
 
 
 public class App1 {
+  
 
   public static void main(String[] args) {
     final int MAX_LENGTH = 100;
     int i =0;
     Scanner sc = new Scanner(System.in);
- /*
+ 
     int[] no = new int[MAX_LENGTH];
     String[] name = new String[MAX_LENGTH];
     String[] email = new String[MAX_LENGTH];
@@ -34,7 +36,7 @@ public class App1 {
     photo[i] = sc.nextLine();
     System.out.println("전화: ");
     tel[i] = sc.nextLine();
-    registeredDate[i] = new Date();
+    registeredDate[i] = new Date(System.currentTimeMillis());
     System.out.println();
    
     System.out.println("계속 입력하시겠습니까? (Y/N)");
@@ -57,8 +59,9 @@ for (i=0; i<size; i++) {
   System.out.printf("가입일: %tY-%1$tm-%1$td\n",registeredDate[i]);
 }
 
- */
+ 
   }
-
+ static void Hello() {
+ }
 
 }
