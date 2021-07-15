@@ -10,6 +10,11 @@ public class Exam0510 {
   // 
   public static void main(String[] 변수명은상관없다) {
     System.out.println("Hello!");
+    인사해("문어");
+  }
+  
+  static void 인사해(String 이름) {
+    System.out.println(이름 + "님 반갑습니다. ");
   }
 }
 

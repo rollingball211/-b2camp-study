@@ -24,7 +24,7 @@ public class Exam0430 {
     System.out.println(ref.a);
     System.out.println(ref.b);
   }
-}
+} 
 
 // 1) main() 호출
 //    => JVM Stack: args, ref 변수 생성

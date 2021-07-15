@@ -16,7 +16,10 @@ public class Exam0340 {
     MyObject ref = new MyObject();
     ref.a = b;
     ref.b = a;
+    System.out.println(a);
+    System.out.println(b);
     return ref;
+    
   }
 
   public static void main(String[] args) {

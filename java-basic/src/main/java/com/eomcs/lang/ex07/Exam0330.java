@@ -32,7 +32,7 @@ public class Exam0330 {
     ref.a = 100;
     ref.b = 200;
    
-
+    
     // a, b 변수가 들어 있는 인스턴스(객체=메모리)의 주소를 
     // swap()에 넘긴다. => 그래서 "call by reference"인 것이다.
     swap(ref);
