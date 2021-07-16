@@ -12,11 +12,9 @@ public class Prompt {
     return keyboardScan.nextLine();
   }
   static int inputInt(String title) {
-    System.out.println(title);
     return Integer.parseInt((inputString(title)));
   }
   static Date inputDate(String title) {
-    System.out.println(title);
     return Date.valueOf(inputString(title));
   }
   
@@ -24,6 +22,5 @@ public class Prompt {
     keyboardScan.close();
   }
 }
-
 
 
