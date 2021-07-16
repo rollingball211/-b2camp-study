@@ -1,22 +1,14 @@
-package pms;
+package pms.handler;
 
 import java.sql.Date;
+import com.eomcs.util.Prompt;
+import pms.domain.Member;
 
 public class MemberHandler {
   
   //한 회원의 데이터를 저장할 수 있도록
   // 새 구조의 데이터 타입을 정의함.
- static class Member {
-
-    int no;
-    String name;
-    String email;
-    String password;
-    String photo;
-    String tel;
-    Date registeredDate;
-    int size;
-  }
+ 
   static final int MAX_LENGTH = 3;
   
   //Member 인스턴스의 주소를 저장할 레퍼런스를 100개 저장.
@@ -24,7 +16,7 @@ public class MemberHandler {
   
   static int size =0;
   
-    static void add() {
+    public static void add() {
     System.out.println("[회원 등록]");
     
     Member member = new Member();
@@ -57,7 +49,7 @@ public class MemberHandler {
     
   
 
-  static void list() {
+ public static void list() {
     System.out.println("[회원 목록]");
     for( int i =0; i<size; i++) {
       System.out.printf("%d,%s,%s,%s,%s\n",

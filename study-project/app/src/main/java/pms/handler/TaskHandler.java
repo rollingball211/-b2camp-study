@@ -1,21 +1,16 @@
-package pms;
+package pms.handler;
 
-import java.sql.Date;
+import com.eomcs.util.Prompt;
+import pms.domain.TaskMember;
 
 public class TaskHandler {
   static final int TASK_LENGTH = 100;
 
   static int tSize = 0;
   static TaskMember[] taskMemberArray = new TaskMember[TASK_LENGTH];
-  static class TaskMember{
-    int tNo;
-    String tContent;
-    Date tDeadline;
-    String tOwner;
-    int  tStatus;
-  }
 
-  static void addTask() {
+
+  public static void addTask() {
     System.out.println("[작업 등록]");
     
     TaskMember taskmember= new TaskMember();
@@ -32,14 +27,15 @@ public class TaskHandler {
     taskmember.tStatus = Prompt.inputInt("> ");
 
     taskmember.tOwner = Prompt.inputString("담당자? ");
-//
-  //  for(int i = 0; i<taskMemberArray.length; i++) {
-    //  taskMemberArray[i] = taskmember;
-   // }
+
+   //for(tSize = 0; tSize<TASK_LENGTH; tSize++) {
+    // taskMemberArray[tSize] = taskmember;
+    // }
+ 
    taskMemberArray[tSize++] =taskmember;
   }
 
-  static void listTasks() {
+  public static void listTasks() {
     System.out.println("[작업 목록]");
 
     for (int i = 0; i < tSize; i++) {

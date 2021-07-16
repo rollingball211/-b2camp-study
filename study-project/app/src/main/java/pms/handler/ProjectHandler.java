@@ -1,27 +1,18 @@
-package pms;
+package pms.handler;
 
-import java.sql.Date;
-
+import com.eomcs.util.Prompt;
+import pms.domain.Pmember;
 public class ProjectHandler {
   static final int PROJECT_LENGTH = 1000;
   static int pSize = 0;
   
-  static class Pmember{
-    int pNo;
-    String pTitle;
-    String pContent;
-    Date pStartDate;
-    Date pEndDate;
-    String pOwner;
-    String pMembers;
-    
-  }
+ 
  static Pmember[] pmemberArray = new Pmember[PROJECT_LENGTH];
  
   
  
   
-  static void addProject() {
+  public static void addProject() {
     
     Pmember pmember = new Pmember();
     System.out.println("[프로젝트 등록]");
@@ -43,7 +34,7 @@ public class ProjectHandler {
     pmemberArray[pSize++]=pmember;
   }
 
-  static void listProjects() {
+  public static void listProjects() {
     System.out.println("[프로젝트 목록]");
     for (int i = 0; i < pSize; i++) {
       // 번호, 프로젝트명, 시작일, 종료일, 만든이
