@@ -21,6 +21,7 @@ public class MemberHandler {
   
   //Member 인스턴스의 주소를 저장할 레퍼런스를 100개 저장.
   static Member[] members = new Member[MAX_LENGTH];
+  
   static int size =0;
   
     static void add() {

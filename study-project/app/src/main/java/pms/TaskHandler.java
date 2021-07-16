@@ -4,31 +4,39 @@ import java.sql.Date;
 
 public class TaskHandler {
   static final int TASK_LENGTH = 100;
-  static int[] tNo = new int[TASK_LENGTH];
-  static String[] tContent = new String[TASK_LENGTH];
-  static Date[] tDeadline = new Date[TASK_LENGTH];
-  static String[] tOwner = new String[TASK_LENGTH];
-  static int[] tStatus = new int[TASK_LENGTH];
+
   static int tSize = 0;
-  
+  static TaskMember[] taskMemberArray = new TaskMember[TASK_LENGTH];
+  static class TaskMember{
+    int tNo;
+    String tContent;
+    Date tDeadline;
+    String tOwner;
+    int  tStatus;
+  }
 
   static void addTask() {
     System.out.println("[작업 등록]");
+    
+    TaskMember taskmember= new TaskMember();
+    
+    taskmember.tNo = Prompt.inputInt("번호? ");
+    taskmember.tContent = Prompt.inputString("내용?: ");
 
-    tNo[tSize] = Prompt.inputInt("번호? ");
-    tContent[tSize] = Prompt.inputString("내용?: ");
-
-    tDeadline[tSize] = Prompt.inputDate("마감일: ");
+    taskmember.tDeadline = Prompt.inputDate("마감일: ");
 
     System.out.println("상태?");
     System.out.println("0: 신규");
     System.out.println("1: 진행중");
     System.out.println("2: 완료");
-    tStatus[tSize] = Prompt.inputInt("> ");
+    taskmember.tStatus = Prompt.inputInt("> ");
 
-    tOwner[tSize] = Prompt.inputString("담당자? ");
-
-    tSize++;
+    taskmember.tOwner = Prompt.inputString("담당자? ");
+//
+  //  for(int i = 0; i<taskMemberArray.length; i++) {
+    //  taskMemberArray[i] = taskmember;
+   // }
+   taskMemberArray[tSize++] =taskmember;
   }
 
   static void listTasks() {
@@ -36,7 +44,7 @@ public class TaskHandler {
 
     for (int i = 0; i < tSize; i++) {
       String stateLabel = null;
-      switch (tStatus[i]) {
+      switch (taskMemberArray[i].tStatus) {
         case 1:
           stateLabel = "진행중";
           break;
@@ -48,7 +56,11 @@ public class TaskHandler {
       }
       // 번호, 작업명, 마감일, 프로젝트, 상태, 담당자
       System.out.printf("%d, %s, %s, %s, %s\n", // 출력 형식 지정
-          tNo[i], tContent[i], tDeadline[i], stateLabel, tOwner[i]);
+          taskMemberArray[i].tNo, 
+          taskMemberArray[i].tContent,
+          taskMemberArray[i].tDeadline,
+           stateLabel,
+          taskMemberArray[i].tOwner);
     }
   }
 }
