@@ -48,7 +48,109 @@ public class BoardHandler {
           this.boards[i].like);
     }
   }
+  
+  public void detail() {
+  System.out.println("상세 조회");
+  int no = Prompt.inputInt("번호?");
+  
+  Board board = null;
+  
+  for(int i =0; i<this.size; i++) {
+    if(boards[i].no == no) {
+      board = boards[i];
+      break;
+  }
+  }
+  if (board == null) {
+    System.out.println("해당 번호의 게시글이 없습니다.");
+    return;
+  }
+  System.out.printf("제목 : %s \n ", board.title);
+  System.out.printf("내용 : %s \n ", board.content);
+  System.out.printf("작성자: %s \n " , board.writer);
+  System.out.printf("등록일: %s \n ", board.registeredDate);
+  System.out.printf("조회수: %s \n ", ++board.viewCount);
+  
 }
+  
+  public void update() {
+    System.out.println("[개시글 변경]");
+    int no = Prompt.inputInt("번호?");
+    Board board = null;
+
+    for(int i =0; i<this.size; i++) {
+      if(boards[i].no == no) {
+        board = boards[i];
+        break;
+      }
+    }
+    
+   if(board == null) {
+     System.out.println("해당 번호의 게시글이 없습니다.");
+     return;
+   }
+   
+   board.title = Prompt.inputString("제목을 어떻게 바꾸시겠습니까? ");
+   board.content = Prompt.inputString("내용을 어떻게 바꾸시겠습니까?");
+   System.out.println("정말 변경하시겠습니까?? Y|N");
+   String input = Prompt.inputString("> ");
+   if(input.equalsIgnoreCase("Y")) {
+     board.title = boards[no-1].title;
+     board.content = boards[no-1].content;
+     System.out.println("게시글 변경 완료!");
+     
+   }else if(input.equalsIgnoreCase("N") || input.length() == 0) {
+   System.out.println("변경을 취소했습니다!!");
+     return;
+   }
+  }
+  
+
+  public void delete() {
+    System.out.println("[개시글 삭제]");
+    int no = Prompt.inputInt("번호?");
+    Board board = null;
+
+    for(int i =0; i<this.size; i++) {
+      if(boards[i].no == no) {
+        board = boards[i];
+        break;
+      }
+    }
+    
+   if(board == null) {
+     System.out.println("해당 번호의 게시글이 없습니다.");
+     return;
+   }
+   
+  
+   System.out.println("정말 변경하시겠습니까?? Y|N");
+   String input = Prompt.inputString("> ");
+   if(input.equalsIgnoreCase("Y")) {
+//     board.no = 0;
+//     board.title = null;
+//     board.content = null;
+//     board.registeredDate=null;
+//     board.writer = null;
+//     board.like=0;
+//     board.viewCount=0;
+     for(int i = 0; i<MAX_LENGTH; i++) {
+      // 07/21
+     }
+     
+     
+     
+     System.out.println("게시글 변경 완료!");
+     
+   }else if(input.equalsIgnoreCase("N") || input.length() == 0) {
+   System.out.println("변경을 취소했습니다!!");
+     return;
+   }
+  }
+  }
+
+
+
 
 
 

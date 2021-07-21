@@ -33,7 +33,7 @@ public class App {
 
       } else if (input.equals("/member/list")) {
         memberHandler.list();
-
+      
       }  else if (input.equals("/project/add")) {
         projectHandler.add(memberHandler);
 
@@ -55,8 +55,17 @@ public class App {
         // BoardHandler의 list()를 실행할 때 
         // list()에서 사용할 게시글 배열이 있는 인스턴스 주소를 넘겨준다.
         boardHandler.list();
-
-      }  else if (input.equals("/board2/add")) {
+      } else if (input.equals("/board/detail")) {
+        boardHandler.detail();
+      
+      }else if(input.equals("/board/update")){
+        boardHandler.update();
+        
+      }else if(input.equals("/board/delete")){
+        boardHandler.delete();
+      
+      }else if (input.equals("/board2/add")) {
+      
         // BoardHandler의 add()를 실행할 때 
         // add()에서 사용할 게시글 배열이 있는 인스턴스 주소를 넘겨준다.
         boardHandler2.add();
