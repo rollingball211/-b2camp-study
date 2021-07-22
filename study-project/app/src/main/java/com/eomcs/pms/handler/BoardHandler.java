@@ -109,21 +109,20 @@ public class BoardHandler {
   public void delete() {
     System.out.println("[개시글 삭제]");
     int no = Prompt.inputInt("번호?");
-    Board board = null;
 
+    int boardIndex = -1;
     for(int i =0; i<this.size; i++) {
       if(boards[i].no == no) {
-        board = boards[i];
+        boardIndex = i;
         break;
       }
     }
     
-   if(board == null) {
+   if(boardIndex == -1) {
      System.out.println("해당 번호의 게시글이 없습니다.");
      return;
    }
    
-  
    System.out.println("정말 변경하시겠습니까?? Y|N");
    String input = Prompt.inputString("> ");
    if(input.equalsIgnoreCase("Y")) {
@@ -134,19 +133,19 @@ public class BoardHandler {
 //     board.writer = null;
 //     board.like=0;
 //     board.viewCount=0;
-     for(int i = 0; i<MAX_LENGTH; i++) {
-      // 07/21
+     for(int i = boardIndex+1; i<this.size; i++) {
+      this.boards[i-1] = this.boards[i];
+       
      }
-     
-     
-     
-     System.out.println("게시글 변경 완료!");
-     
+    
+     this.boards[--this.size] = null;
+       System.out.println("게시글을 삭제했습니다.");
    }else if(input.equalsIgnoreCase("N") || input.length() == 0) {
    System.out.println("변경을 취소했습니다!!");
      return;
    }
   }
+  
   }
 
 
