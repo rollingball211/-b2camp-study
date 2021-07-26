@@ -12,7 +12,7 @@ public class ProjectHandler {
   //projectHandler가 받을 의존 객체
   //다음과 같이 인스턴스 필드로 받음
   //이 인스턴스 변수에 의존객체의 주소를 넣을 수 있도록 공개한다
-    MemberHandler memberHandler;
+  MemberHandler memberHandler;
   Project[] projects = new Project[MAX_LENGTH];
   int size = 0;
   
@@ -24,7 +24,7 @@ public class ProjectHandler {
   //인스턴스 변수를 유효한 값으로 초기화시킨다.
   //- 필요하다면 인스턴스 변수를 초기화시킬 때 사용할 값을 파라미터로 받을 수 있다.
   
-   public ProjectHandler( MemberHandler memberHandler) {
+   public ProjectHandler(MemberHandler memberHandler) {
     //생성나에 파라미터가 있으면 인스턴스를 생성할 때 반드시 그 값을 넘겨야 함.
     //일종의 인스턴스 변수의 값을 설정하는것을 강제하는 효과가 있음.
     this.memberHandler = memberHandler;

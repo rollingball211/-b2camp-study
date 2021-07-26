@@ -58,8 +58,9 @@ public class Exam0240 {
           arr[i].name, arr[i].kor, arr[i].eng, arr[i].math, arr[i].sum, arr[i].aver);
     }
   }
+  
+  
 }
-
 
 
 
