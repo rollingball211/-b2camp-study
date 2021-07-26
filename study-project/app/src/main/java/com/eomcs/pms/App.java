@@ -12,8 +12,18 @@ public class App {
 
     BoardHandler boardHandler = new BoardHandler();
     MemberHandler memberHandler = new MemberHandler();
-    ProjectHandler projectHandler = new ProjectHandler();
-    TaskHandler taskHandler = new TaskHandler();
+    
+    
+   
+   
+    //ProjectHandler의 메서드가 사용할 의존 객체를 
+    //미리 주입함
+   
+    // - 생성자를 도입하라!
+    ProjectHandler projectHandler = new ProjectHandler(memberHandler);
+
+    // 생성자를 이용하면 다음과 같이 인스턴스를 생성할 때 의존 객체 주입을 강제할 수 있다.
+    TaskHandler taskHandler = new TaskHandler(memberHandler);
 
     while (true) {
       String input = Prompt.inputString("명령> ");
@@ -37,8 +47,10 @@ public class App {
         memberHandler.delete();
 
       }  else if (input.equals("/project/add")) {
-        projectHandler.add(memberHandler);
-
+        //add() method가 사용할 의존 객체를 미리 주입했기 때문에
+        //이제 파라미터로 주입할 필요가 없다.
+        //projectHandler.add(memberHandler);
+          projectHandler.add();
       }  else if (input.equals("/project/list")) {
         projectHandler.list();
 
@@ -46,13 +58,17 @@ public class App {
         projectHandler.detail();
 
       }  else if (input.equals("/project/update")) {
-        projectHandler.update(memberHandler);
-
+        projectHandler.update();
+        //update() 메서드가 사용할 의존 객체를 미리 주입했기 떄문에
+        //이제 파라미터로 주입할 필요가 없다.
+        //projectHandler.update(memberHandler);
+        
       }  else if (input.equals("/project/delete")) {
         projectHandler.delete();
 
       }  else if (input.equals("/task/add")) {
-        taskHandler.add(memberHandler);
+          taskHandler.add();
+        //taskHandler.add(memberHandler);
 
       }  else if (input.equals("/task/list")) {
         taskHandler.list();
@@ -61,7 +77,8 @@ public class App {
         taskHandler.detail();
 
       }  else if (input.equals("/task/update")) {
-        taskHandler.update(memberHandler);
+          taskHandler.update();
+        //taskHandler.update(memberHandler);
 
       }  else if (input.equals("/task/delete")) {
         taskHandler.delete();
