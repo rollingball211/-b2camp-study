@@ -8,10 +8,7 @@ public class Exam0730 {
     int b;
     int c;
 
-    {
-      a = 100;
-      System.out.println("Hello!");
-    }
+  
     
     // 여러 개의 생성자가 있으면,
     // - 존재하는 모든 생성자의 앞 부분에 삽입된다.
@@ -55,7 +52,17 @@ public class Exam0730 {
       System.out.println("A(int, int)");
       this.b = b;
       this.c = c;
+      
     }
+    
+    {
+      a = 100;
+      System.out.println("Hello!");
+    }
+    
+    //여러개의 생성자가 있으면
+    //인스턴스 초기화 블록 코드는 존재하는 모든 생성자의 앞 부분에 삽입된다.
+    
   }
   public static void main(String[] args) {
     A obj1 = new A();
