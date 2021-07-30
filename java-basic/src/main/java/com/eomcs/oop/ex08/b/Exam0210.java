@@ -6,6 +6,7 @@ class A {
   int defaultVar;
   protected int protectedVar;
   public int publicVar;
+  
 }
 
 public class Exam0210 extends com.eomcs.oop.ex08.b.sub.C {
@@ -37,11 +38,20 @@ public class Exam0210 extends com.eomcs.oop.ex08.b.sub.C {
     obj3.publicVar = 100; // OK! 모두 다 접근 가능.
 
     Exam0210 obj4 = new Exam0210();
+    
+    
     //obj4.privateVar = 100; // 접근 불가! C 클래스에서만 접근 가능
     //obj4.defaultVar = 100; // 접근 불가! C 클래스와 같은 패키지가 아니다.
     obj4.protectedVar = 100; // OK! Exam0210은 C의 자식 클래스이며,
     // 또한 C로부터 상속 받아서 만든 자기 변수이다.
     obj4.publicVar = 100;
+    
+   // obj1.privateVar=1; (X)
+    obj1.protectedVar=1;// (O)
+    obj1.defaultVar=100;//(O)
+    obj1.publicVar=150;//(O)
+    
+  
   }
 
   void m1(com.eomcs.oop.ex08.b.sub.C obj) {
@@ -65,6 +75,7 @@ public class Exam0210 extends com.eomcs.oop.ex08.b.sub.C {
     this.publicVar = 100;
   }
 
+  
 
 }
 

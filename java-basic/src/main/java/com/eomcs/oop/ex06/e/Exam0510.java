@@ -19,5 +19,6 @@ public final class Exam0510 {
   public static void main(String[] args) {
     G g = new G();
     g.m1(100);
+    g.m1(300);
   }
 }
