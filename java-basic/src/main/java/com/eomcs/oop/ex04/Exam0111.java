@@ -11,7 +11,7 @@ public class Exam0111 {
 
     // => char[] 을 사용하여 String 인스턴스 초기화시키기.
     char[] chars = new char[] {'H', 'e', 'l', 'l', 'o'};
-    String s2 = new String(chars);
+    String s2 = new String(chars); //String(char[]) 생성자를 호출하여 인스턴스 초기화.
 
     // => 바이트 배열을 가지고 String 인스턴스 초기화시키기
     byte[] bytes = {
