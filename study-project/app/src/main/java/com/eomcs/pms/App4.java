@@ -31,13 +31,7 @@ public class App4 {
     while (true) {
       
       
-      System.out.println("메인----------------------");
-      System.out.println("1.게시판");
-      System.out.println("2.회원");
-      System.out.println("3.프로젝트");
-      System.out.println("4.작업");
-      System.out.println("0.종료!");
-      int MenuNo = Prompt.inputInt("메인> ");
+      int MenuNo = doMainMenu();
       
       //사용자가 명령어를 직접 입력하는 대신에
       //제시된 메뉴의 번호를 선택하면 
@@ -68,7 +62,7 @@ public class App4 {
   
   
   static void doBoardMenu() {
-    MAIN_LOOP:while(true) {
+    while(true) {
       System.out.println("1. 등록");
       System.out.println("2. 목록");
       System.out.println("3. 상세 보기");
@@ -82,7 +76,7 @@ public class App4 {
        case 3: boardHandler.detail(); break ;
        case 4: boardHandler.update(); break ;
        case 5: boardHandler.delete();break;
-       case 0: continue MAIN_LOOP;
+       case 0: return;
        default:
          System.out.println("무효한 메뉴 번호입니다.");
          
@@ -95,7 +89,7 @@ public class App4 {
    }
   }
   static void doMemberMenu() {
-    MAIN_LOOP:while(true) {
+    while(true) {
       System.out.println("1. 회원 등록");
       System.out.println("2. 회원 목록");
       System.out.println("3. 회원 상세 보기");
@@ -109,7 +103,7 @@ public class App4 {
        case 3: memberHandler.detail();break;
        case 4: memberHandler.update(); break;
        case 5: memberHandler.delete(); break;
-       case 0: continue MAIN_LOOP;
+       case 0: return;
        default:
          System.out.println("무효한 메뉴 번호입니다.");
          
@@ -124,7 +118,7 @@ public class App4 {
   
   
   static void doProjectMenu() {
-    MAIN_LOOP:while(true) {
+    while(true) {
       System.out.println("1. 프로젝트 등록");
       System.out.println("2. 프로젝트 목록");
       System.out.println("3. 프로젝트 상세 보기");
@@ -138,7 +132,7 @@ public class App4 {
        case 3: projectHandler.detail(); break ;
        case 4: projectHandler.update();;break;
        case 5: projectHandler.delete(); break ;
-       case 0: continue MAIN_LOOP;
+       case 0: return;
        default:
          System.out.println("무효한 메뉴 번호입니다.");
          
@@ -152,7 +146,7 @@ public class App4 {
   }  
   
   static void doTaskMenu() {
-    MAIN_LOOP:while(true) {
+    while(true) {
       System.out.println("1. 작업 등록");
       System.out.println("2. 작업 목록");
       System.out.println("3. 작업 상세 보기");
@@ -166,13 +160,22 @@ public class App4 {
        case 3:  taskHandler.detail(); break;
        case 4:  taskHandler.update(); break;
        case 5:  taskHandler.delete(); break;
-       case 0: continue MAIN_LOOP;
+       case 0: return;
        default:
          System.out.println("무효한 메뉴 번호입니다.");
          
       }
      System.out.println();
    }
+  }
+  static int doMainMenu() {
+    System.out.println("메인----------------------");
+    System.out.println("1.게시판");
+    System.out.println("2.회원");
+    System.out.println("3.프로젝트");
+    System.out.println("4.작업");
+    System.out.println("0.종료!");
+    return Prompt.inputInt("메인> ");
   }
   
   
