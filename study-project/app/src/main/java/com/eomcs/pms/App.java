@@ -26,6 +26,34 @@ public class App {
     TaskHandler taskHandler = new TaskHandler(memberHandler);
 
     while (true) {
+      
+      String menuId = null;
+      System.out.println("메인----------------------");
+      System.out.println("1.게시판");
+      System.out.println("2.회원");
+      System.out.println("3.프로젝트");
+      System.out.println("4.작업");
+      System.out.println("0.종료!");
+      int MenuNo = Prompt.inputInt("메인> ");
+      if (MenuNo==0) {
+        System.out.println("안녕!");
+        break;
+      }
+       else if(MenuNo==1) {
+         while(true) {
+         System.out.println("1. 등록");
+         System.out.println("2. 목록");
+         System.out.println("3. 상세 보기");
+         System.out.println("4. 변경");
+         System.out.println("5. 삭제");
+         System.out.println("0. 이전 메뉴");
+         MenuNo = Prompt.inputInt("게시판> ");
+         if (MenuNo==0) {
+           break;
+         }
+      }
+       }
+       
       String input = Prompt.inputString("명령> ");
 
       if (input.equals("exit") || input.equals("quit")) {
