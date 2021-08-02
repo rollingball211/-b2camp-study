@@ -6,7 +6,7 @@ import com.eomcs.pms.handler.ProjectHandler;
 import com.eomcs.pms.handler.TaskHandler;
 import com.eomcs.util.Prompt;
 
-public class App1 {
+public class App2 {
 
   public static void main(String[] args) {
 
@@ -31,6 +31,8 @@ public class App1 {
     
     //2) 게시판 메뉴를 출력하고 번호 입력받음.
     //- 사용자가 입력한 메뉴 번호에 따라 실행할 명령어 SWITCH문에 넣음.
+    
+    
    MAIN_LOOP: while (true) {
       
       String input = null;
@@ -73,9 +75,99 @@ public class App1 {
             System.out.println("무효한 메뉴 번호입니다.");
             
          }
+        
+        
+        
+        
         System.out.println();
       }
        }
+       else if(MenuNo==2) {
+         LOOP : while(true) {
+          System.out.println("1. 회원 등록");
+          System.out.println("2. 회원 목록");
+          System.out.println("3. 회원 상세 보기");
+          System.out.println("4. 회원 변경");
+          System.out.println("5. 회원 삭제");
+          System.out.println("0. 이전 메뉴");
+          MenuNo = Prompt.inputInt("회원> ");
+         switch (MenuNo) {
+           case 1: input = "/member/add"; break LOOP;
+           case 2: input = "/member/list"; break LOOP;
+           case 3: input = "/member/detail";break LOOP;
+           case 4: input = "/member/update";break LOOP;
+           case 5: input = "/member/delete";break LOOP;
+           case 0: continue MAIN_LOOP;
+           default:
+             System.out.println("무효한 메뉴 번호입니다.");
+             
+          }
+         
+         
+         
+         
+         System.out.println();
+       }
+        }
+       
+       else if(MenuNo==3) {
+         LOOP : while(true) {
+          System.out.println("1. 프로젝트 등록");
+          System.out.println("2. 프로젝트 목록");
+          System.out.println("3. 프로젝트 상세 보기");
+          System.out.println("4. 프로젝트 변경");
+          System.out.println("5. 프로젝트 삭제");
+          System.out.println("0. 이전 메뉴");
+          MenuNo = Prompt.inputInt("프로젝트 > " );
+         switch (MenuNo) {
+           case 1: input = "/project/add"; break LOOP;
+           case 2: input = "/project/list"; break LOOP;
+           case 3: input = "/project/detail";break LOOP;
+           case 4: input = "/project/update";break LOOP;
+           case 5: input = "/project/delete";break LOOP;
+           case 0: continue MAIN_LOOP;
+           default:
+             System.out.println("무효한 메뉴 번호입니다.");
+             
+          }
+         
+         
+         
+         
+         System.out.println();
+       }
+        }
+       
+       
+       
+       else if(MenuNo==4) {
+         LOOP : while(true) {
+          System.out.println("1. 작업 등록");
+          System.out.println("2. 작업 목록");
+          System.out.println("3. 작업 상세 보기");
+          System.out.println("4. 작업 변경");
+          System.out.println("5. 작업 삭제");
+          System.out.println("0. 이전 메뉴");
+          MenuNo = Prompt.inputInt("작업> ");
+         switch (MenuNo) {
+           case 1: input = "/task/add"; break LOOP;
+           case 2: input = "/task/list"; break LOOP;
+           case 3: input = "/task/detail";break LOOP;
+           case 4: input = "/task/update";break LOOP;
+           case 5: input = "/task/delete";break LOOP;
+           case 0: continue MAIN_LOOP;
+           default:
+             System.out.println("무효한 메뉴 번호입니다.");
+             
+          }
+         
+         
+         
+         
+         System.out.println();
+       }
+        }
+     
       
       if (input.equals("/member/add")) {
         memberHandler.add();
