@@ -6,13 +6,13 @@ public class BoardDeleteMenu extends Menu{
 
   BoardHandler boardHandler;
   public BoardDeleteMenu(BoardHandler boardHandler) {
-  super("상세보기");
+  super("삭제");
   this.boardHandler= boardHandler;
 }
   
   @Override
 public void execute() {
   
-  boardHandler.detail();
+  boardHandler.delete();
 }
 }

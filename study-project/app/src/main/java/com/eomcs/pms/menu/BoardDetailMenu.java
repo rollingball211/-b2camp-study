@@ -6,13 +6,13 @@ public class BoardDetailMenu extends Menu{
 
   BoardHandler boardHandler;
   public BoardDetailMenu(BoardHandler boardHandler) {
-  super("등록");
+  super("상세보기");
   this.boardHandler= boardHandler;
 }
   
   @Override
 public void execute() {
   
-  boardHandler.add();
+  boardHandler.detail();
 }
 }
