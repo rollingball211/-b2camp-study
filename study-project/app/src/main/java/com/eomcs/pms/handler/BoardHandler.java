@@ -114,14 +114,14 @@ public class BoardHandler {
   public void delete() {
     System.out.println("[게시글 삭제]");
     int no = Prompt.inputInt("번호? ");
-
-    int index = indexOf(no);
+    Board board = findByNo(no);
+    Node node = head;
 
     // Board 인스턴스가 들어 있는 배열을 뒤져서
     // 게시글 번호와 일치하는 Board 인스턴스를 찾는다. 
     
 
-    if (index == -1) {
+    if (board == null) {
       System.out.println("해당 번호의 게시글이 없습니다.");
       return;
     }
@@ -131,14 +131,51 @@ public class BoardHandler {
       System.out.println("게시글 삭제를 취소하였습니다.");
       return;
     }
-
-    for (int i = index + 1; i < this.size; i++) {
-      this.boards[i - 1] = this.boards[i];
+    
+   
+    
+    
+    Node prev = null;
+    
+    while (node != null) {
+      if (node.board == board) {
+        if (node == head) {
+          head = node.next;
+        }else {
+          prev.next = node.next; //이전 노드와 다음 노드와 연결함
+        }
+        node.next = null; //다음 노드와의 연결을 끊음
+        
+        if(tail == node) {  //삭제할 현재 노드가 마지막 노드라면.
+          tail = prev; //이전 노드를 마지막 노드로 설정함.
+          
+        }
+        break;
+      }
     }
-    this.boards[--this.size] = null;
-
-    System.out.println("게시글을 삭제하였습니다.");
   }
+    
+    
+//    if (head == null) {
+//     System.out.println("삭제할 수 없습니다.");
+//     return;
+//    } else{
+//      // 삭제할 node를 null로 바꾼다.
+//      if(board.no == no) {
+//      tail.board = null;
+//      if(tail == node) {
+//        return;
+//      }
+//      tail.next= node;
+//      }
+//      size--;
+//      System.out.println("게시글을 삭제하였습니다.");
+//      // 새로 만든 노드를 마지막 노드로 설정한다.
+//      //만약 마지막 노드를 삭제했다면  뒤로 넘기지 않고 끝
+//  
+//  }
+  
+
 
   private Board findByNo(int no) {
     Node node = head;
@@ -151,17 +188,7 @@ public class BoardHandler {
     }
     return null;
   }
-  private int indexOf(int no) {
-    for (int i = 0; i < this.size; i++) {
-      if (this.boards[i].no == no) {
-        return i;
-        
-      }
-    }
-    return -1;
-  }
 }
-
 
 
 
