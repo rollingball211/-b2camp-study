@@ -6,6 +6,20 @@ import com.eomcs.util.Prompt;
 
 public class BoardHandler {
 
+public class Node {
+
+  Board board;
+  Node next;
+
+  
+ 
+  
+  public Node(Board board){
+    this.board = board;
+  }
+}
+
+
   // 모든 게시판의 최대 배열 개수가 같기 때문에 다음 변수는 
   // 그냥 static 필드로 남겨둔다.
   static final int MAX_LENGTH = 5;
