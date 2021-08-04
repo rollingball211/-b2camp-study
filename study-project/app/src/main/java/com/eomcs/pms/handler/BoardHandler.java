@@ -6,13 +6,10 @@ import com.eomcs.util.Prompt;
 
 public class BoardHandler {
 
-public class Node {
+static class Node {
 
   Board board;
   Node next;
-
-  
- 
   
   public Node(Board board){
     this.board = board;
@@ -26,7 +23,7 @@ public class Node {
 
   // 게시판 마다 따로 관리해야 하기 때문에 인스턴스 필드로 전환한다.
   // => static 옵션을 뺀다.
-  Board[] boards = new Board[MAX_LENGTH];
+
   int size = 0;
   
   Node head;
@@ -166,9 +163,17 @@ public class Node {
         }
         break;
       }
+   // 현재 노드가 아니라면,
+      prev = node; // 현재 노드의 주소를 prev 변수에 저장하고,
+      node = node.next; // node 변수에는 다음 노드의 주소를 저장한다.
     }
+
+    size--;
+
+    System.out.println("게시글을 삭제하였습니다.");
   }
     
+  
     
 //    if (head == null) {
 //     System.out.println("삭제할 수 없습니다.");
@@ -189,8 +194,6 @@ public class Node {
 //  
 //  }
   
-
-
   private Board findByNo(int no) {
     Node node = head;
     

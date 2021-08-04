@@ -6,9 +6,18 @@ import com.eomcs.util.Prompt;
 
 public class TaskHandler  {
 
-  static final int MAX_LENGTH = 5;
+  static class Node {
 
-  Task[] tasks = new Task[MAX_LENGTH];
+    Task task;
+    Node next;
+    
+    public Node(Task task){
+      this.task = task;
+    }
+  }
+
+  Node head;
+  Node tail;
   int size = 0;
 
   //TaskHandler의 여러 메서드에서 지속적으로 사용할 의존 객체를 인스턴스 필드로 받는다
@@ -35,36 +44,39 @@ public class TaskHandler  {
     task.owner = promptOwner(null);
     if (task.owner == null) {
       System.out.println("작업 등록을 취소합니다.");
-      return; 
+      return;
     }
-    if (this.size == this.tasks.length) {
-      // 기존 배열 보다 50% 더 큰 배열을 만든다.
-      Task[] arr = new Task[this.tasks.length + this.tasks.length / 2];
+    //task.tasks =  promptMembers(null);
 
-      // 기존 배열의 값을 새 배열로 복사한다.
-      for (int i = 0; i < this.size; i++) {
-        arr[i] = this.tasks[i];
-      }
+    Node node = new Node(task);
 
-      //기존 배열 대신 새 배열 주소를 저장한다.
-      // => 물론 이렇게 함으로써 기존 배열은 가비지가 될 것이다.
-      this.tasks = arr;
+    if (head == null) {
+      tail = head = node;
+    } else {
+      // 기존에 tail이 가리키는 마지막 노드의 next 변수에 새 노드 주소를 저장한다.
+      tail.next = node;
+
+      // 새로 만든 노드를 마지막 노드로 설정한다. 
+      tail = node;
     }
-    this.tasks[this.size++] = task;
+
+    size++;
   }
+   
 
   //다른 패키지에 있는 App 클래스가 다음 메서드를 호출할 수 있도록 공개한다.
   public void list() {
     System.out.println("[작업 목록]");
-
-    for (int i = 0; i < this.size; i++) {
+    Node node = head;
+    do {
       System.out.printf("%d, %s, %s, %s, %s\n",
-          this.tasks[i].no, 
-          this.tasks[i].content, 
-          this.tasks[i].deadline, 
-          getStatusLabel(this.tasks[i].status), 
-          this.tasks[i].owner);
-    }
+          node.task.no, 
+          node.task.content, 
+          node.task.deadline, 
+          getStatusLabel(node.task.status), 
+          node.task.owner);
+    }   while (node != null);{
+  }
   }
 
   public void detail() {
@@ -120,8 +132,8 @@ public class TaskHandler  {
     System.out.println("[작업 삭제]");
     int no = Prompt.inputInt("번호? ");
 
-    int index = indexOf(no);
-    if (index == -1) {
+    Task task = findByNo(no);
+    if (task == null) {
       System.out.println("해당 번호의 작업이 없습니다.");
       return;
     }
@@ -132,31 +144,36 @@ public class TaskHandler  {
       return;
     }
 
-    for (int i = index + 1; i < this.size; i++) {
-      this.tasks[i - 1] = this.tasks[i];
-    }
-    this.tasks[--this.size] = null;
 
-    System.out.println("작업를 삭제하였습니다.");
-  }
+    Node node = head;
+    Node prev = null;
 
-  private Task findByNo(int no) {
-    for (int i = 0; i < this.size; i++) {
-      if (this.tasks[i].no == no) {
-        return this.tasks[i];
+    
+    while (node != null) {
+      if (node.task == task) {
+        if (node == head) {
+          head = node.next;
+        }else {
+          prev.next = node.next; //이전 노드와 다음 노드와 연결함
+        }
+        node.next = null; //다음 노드와의 연결을 끊음
+        
+        if(tail == node) {  //삭제할 현재 노드가 마지막 노드라면.
+          tail = prev; //이전 노드를 마지막 노드로 설정함.
+          
+        }
+        break;
       }
+   // 현재 노드가 아니라면,
+      prev = node; // 현재 노드의 주소를 prev 변수에 저장하고,
+      node = node.next; // node 변수에는 다음 노드의 주소를 저장한다.
     }
-    return null;
-  }
 
-  private int indexOf(int no) {
-    for (int i = 0; i < this.size; i++) {
-      if (this.tasks[i].no == no) {
-        return i;
-      }
-    }
-    return -1;
+    size--;
+
+    System.out.println("게시글을 삭제하였습니다.");
   }
+ 
 
   private String getStatusLabel(int status) {
     switch (status) {
@@ -188,5 +205,17 @@ public class TaskHandler  {
     return Prompt.inputInt("> ");
   }
 
+  private Task findByNo(int no) {
+    Node node = head;
+    
+    while (node != null) {
+      if (node.task.no == no) {
+        return node.task;
+      }
+      node = node.next;
+    }
+    return null;
+  }
+  
 }
 

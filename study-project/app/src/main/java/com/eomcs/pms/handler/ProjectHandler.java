@@ -5,15 +5,24 @@ import com.eomcs.pms.domain.Project;
 import com.eomcs.util.Prompt;
 
 public class ProjectHandler {
+  static class Node {
 
-  static final int MAX_LENGTH = 5;
+    Project project;
+    Node next;
+    
+    public Node(Project project){
+      this.project = project;
+    }
+  }
+
+  Node head;
+  Node tail;
 
   
   //projectHandler가 받을 의존 객체
   //다음과 같이 인스턴스 필드로 받음
   //이 인스턴스 변수에 의존객체의 주소를 넣을 수 있도록 공개한다
   MemberHandler memberHandler;
-  Project[] projects = new Project[MAX_LENGTH];
   int size = 0;
   
   
@@ -45,37 +54,37 @@ public class ProjectHandler {
      System.out.println("프로젝트 등록을 취소합니다.");
      return;
    }
-    project.members =  promptMembers(null);
+    //project.members =  promptMembers(null);
 
-    if (this.size == this.projects.length) {
-      // 기존 배열 보다 50% 더 큰 배열을 만든다.
-      Project[] arr = new Project[this.projects.length + this.projects.length / 2];
+    Node node = new Node(project);
 
-      // 기존 배열의 값을 새 배열로 복사한다.
-      for (int i = 0; i < this.size; i++) {
-        arr[i] = this.projects[i];
-      }
+    if (head == null) {
+      tail = head = node;
+    } else {
+      // 기존에 tail이 가리키는 마지막 노드의 next 변수에 새 노드 주소를 저장한다.
+      tail.next = node;
 
-      //기존 배열 대신 새 배열 주소를 저장한다.
-      // => 물론 이렇게 함으로써 기존 배열은 가비지가 될 것이다.
-      this.projects = arr;
+      // 새로 만든 노드를 마지막 노드로 설정한다. 
+      tail = node;
     }
-    
-    this.projects[this.size++] = project;
+
+    size++;
   }
 
   //다른 패키지에 있는 App 클래스가 다음 메서드를 호출할 수 있도록 공개한다.
   public void list() {
     System.out.println("[프로젝트 목록]");
-    for (int i = 0; i < this.size; i++) {
+    Node node = head;
+do {
       System.out.printf("%d, %s, %s, %s, %s, [%s]\n",
-          this.projects[i].no, 
-          this.projects[i].title, 
-          this.projects[i].startDate, 
-          this.projects[i].endDate, 
-          this.projects[i].owner,
-          this.projects[i].members);
-    }
+          node.project.no,
+          node.project.title, 
+          node.project.startDate, 
+          node.project.endDate, 
+          node.project.owner,
+          node.project.members);
+        } while (node != null);{
+  }
   }
 
   public void detail() {
@@ -140,9 +149,8 @@ public class ProjectHandler {
   public void delete() {
     System.out.println("[프로젝트 삭제]");
     int no = Prompt.inputInt("번호? ");
-
-    int index = indexOf(no);
-    if (index == -1) {
+     Project project = findByNo(no);
+    if (project == null) {
       System.out.println("해당 번호의 프로젝트가 없습니다.");
       return;
     }
@@ -153,35 +161,53 @@ public class ProjectHandler {
       return;
     }
 
-    for (int i = index + 1; i < this.size; i++) {
-      this.projects[i - 1] = this.projects[i];
-    }
-    this.projects[--this.size] = null;
+    Node node = head;
+    Node prev = null;
 
-    System.out.println("프로젝트를 삭제하였습니다.");
+    
+    while (node != null) {
+      if (node.project == project) {
+        if (node == head) {
+          head = node.next;
+        }else {
+          prev.next = node.next; //이전 노드와 다음 노드와 연결함
+        }
+        node.next = null; //다음 노드와의 연결을 끊음
+        
+        if(tail == node) {  //삭제할 현재 노드가 마지막 노드라면.
+          tail = prev; //이전 노드를 마지막 노드로 설정함.
+          
+        }
+        break;
+      }
+   // 현재 노드가 아니라면,
+      prev = node; // 현재 노드의 주소를 prev 변수에 저장하고,
+      node = node.next; // node 변수에는 다음 노드의 주소를 저장한다.
+    }
+
+    size--;
+
+    System.out.println("게시글을 삭제하였습니다.");
   }
+ 
+  
 
 
   private Project findByNo(int no) {
-    for (int i = 0; i < this.size; i++) {
-      if (this.projects[i].no == no) {
-        return this.projects[i];
-        
+ Node node = head;
+    
+    while (node != null) {
+      if (node.project.no == no) {
+        return node.project;
       }
+      node = node.next;
     }
     return null;
   }
   
-  private int indexOf(int no) {
-    for (int i = 0; i < this.size; i++) {
-      if (this.projects[i].no == no) {
-       return i;
-        
-      }
-    }
-    return -1;
-  }
   
+  
+ 
   private String promptOwner(String ownerName) {
    
     while (true) {
