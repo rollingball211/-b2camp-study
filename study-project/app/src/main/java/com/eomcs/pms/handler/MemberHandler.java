@@ -23,6 +23,21 @@ public class MemberHandler {
     member.photo = Prompt.inputString("사진? ");
     member.tel = Prompt.inputString("전화? ");
     member.registeredDate = new Date(System.currentTimeMillis());
+    
+    if (this.size == this.members.length) {
+      // 기존 배열 보다 50% 더 큰 배열을 만든다.
+      Member[] arr = new Member[this.members.length + this.members.length / 2];
+
+      // 기존 배열의 값을 새 배열로 복사한다.
+      for (int i = 0; i < this.size; i++) {
+        arr[i] = this.members[i];
+      }
+
+      //기존 배열 대신 새 배열 주소를 저장한다.
+      // => 물론 이렇게 함으로써 기존 배열은 가비지가 될 것이다.
+      this.members = arr;
+    }
+
 
     this.members[this.size++] = member;
   }

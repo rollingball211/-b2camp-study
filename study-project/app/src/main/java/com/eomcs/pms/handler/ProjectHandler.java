@@ -45,11 +45,22 @@ public class ProjectHandler {
      System.out.println("프로젝트 등록을 취소합니다.");
      return;
    }
-   
-    
-   
     project.members =  promptMembers(null);
 
+    if (this.size == this.projects.length) {
+      // 기존 배열 보다 50% 더 큰 배열을 만든다.
+      Project[] arr = new Project[this.projects.length + this.projects.length / 2];
+
+      // 기존 배열의 값을 새 배열로 복사한다.
+      for (int i = 0; i < this.size; i++) {
+        arr[i] = this.projects[i];
+      }
+
+      //기존 배열 대신 새 배열 주소를 저장한다.
+      // => 물론 이렇게 함으로써 기존 배열은 가비지가 될 것이다.
+      this.projects = arr;
+    }
+    
     this.projects[this.size++] = project;
   }
 

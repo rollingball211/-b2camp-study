@@ -37,7 +37,19 @@ public class TaskHandler  {
       System.out.println("작업 등록을 취소합니다.");
       return; 
     }
+    if (this.size == this.tasks.length) {
+      // 기존 배열 보다 50% 더 큰 배열을 만든다.
+      Task[] arr = new Task[this.tasks.length + this.tasks.length / 2];
 
+      // 기존 배열의 값을 새 배열로 복사한다.
+      for (int i = 0; i < this.size; i++) {
+        arr[i] = this.tasks[i];
+      }
+
+      //기존 배열 대신 새 배열 주소를 저장한다.
+      // => 물론 이렇게 함으로써 기존 배열은 가비지가 될 것이다.
+      this.tasks = arr;
+    }
     this.tasks[this.size++] = task;
   }
 
