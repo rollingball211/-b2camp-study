@@ -5,8 +5,8 @@ import com.eomcs.pms.domain.Board;
 import com.eomcs.util.Prompt;
 
 public class BoardHandler {
-BoardList boardList = new BoardList();
-
+//BoardList boardList = new BoardList();
+  BoardList2 boardList = new BoardList2();
   
 
   public void add() {
