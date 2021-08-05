@@ -30,8 +30,10 @@ public class MemberHandler {
 
   public void list() {
     System.out.println("[회원 목록]");
-    Member [] list  = memberList.toArray();
-    for (Member member : list) {
+    Object [] list  = memberList.toArray();
+    
+    for (Object obj : list) {
+      Member member = (Member) obj;
       System.out.printf("%d, %s, %s, %s, %s\n", 
           member.no, 
           member.name, 

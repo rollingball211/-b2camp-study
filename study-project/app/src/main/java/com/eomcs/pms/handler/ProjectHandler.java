@@ -50,8 +50,11 @@ public class ProjectHandler {
   //다른 패키지에 있는 App 클래스가 다음 메서드를 호출할 수 있도록 공개한다.
   public void list() {
     System.out.println("[프로젝트 목록]");
-    Project [] list  = projectList.toArray();
-    for (Project project : list) {
+    Object [] list  = projectList.toArray();
+    
+   
+    for (Object obj : list) {
+      Project project = (Project) obj;
       System.out.printf("%d, %s, %s, %s, %s, [%s]\n",
           project.no, 
           project.title, 

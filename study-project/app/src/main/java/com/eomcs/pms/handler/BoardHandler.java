@@ -26,8 +26,11 @@ BoardList boardList = new BoardList();
 
   public void list() {
     System.out.println("[게시글 목록]");
-    Board[] list = boardList.toArray();
-    for(Board board : list){
+    Object[] list = boardList.toArray();
+    
+  
+    for(Object obj : list){
+      Board board = (Board) obj;
       System.out.printf("%d, %s, %s, %s, %d, %d\n", 
           board.no, 
           board.title, 

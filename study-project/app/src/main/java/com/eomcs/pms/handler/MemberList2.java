@@ -1,15 +1,13 @@
 package com.eomcs.pms.handler;
 
-import com.eomcs.pms.domain.Board;
-
-public class BoardList2 {
-  
+import com.eomcs.pms.domain.Member;
+public class MemberList2 {
   static class Node {
-    Board board;
+    Member member;
     Node next;
 
-    public Node(Board board) {
-      this.board = board;
+    public Node(Member member) {
+      this.member = member;
     }
   }
   
@@ -17,8 +15,8 @@ public class BoardList2 {
   Node tail;
   int size = 0;
 
-public void add(Board board) {  
-  Node node = new Node(board);
+public void add(Member member) {  
+  Node node = new Node(member);
 
   if (head == null) {
     tail = head = node;
@@ -33,37 +31,37 @@ public void add(Board board) {
   size++;
 }
 
-public Board[] toArray() {
+public Member[] toArray() {
   //배열에 저장된 값을 담을 정도의 크기를 가진 새 배열을 만듬.
-  Board [] arr = new Board[this.size];
+  Member [] arr = new Member[this.size];
   Node node = head;
 
   int i = 0;
   while (node != null){
-    arr[i++] = node.board;
+    arr[i++] = node.member;
     node = node.next;
   }
   return arr;
 }
 
-public Board findByNo(int no) {
+public Member findByNo(int no) {
  
   Node node = head;
   while (node != null) {
-    if (node.board.no == no) {
-      return node.board;
+    if (node.member.no == no) {
+      return node.member;
     }
     node = node.next;
   }
   return null;
 }
 
-public Boolean remove(Board board) {
+public Boolean remove(Member member) {
   Node node = head;
   Node prev = null;
 
   while (node != null) {
-    if (node.board == board) { //노드에 들어있는 객체와 같다면
+    if (node.member == member) { //노드에 들어있는 객체와 같다면
       if (node == head) { //삭제할 노드가 첫번째 노드라면.
         head = node.next;//head가 두번째 노드를 가르키게 한다.
       } else {

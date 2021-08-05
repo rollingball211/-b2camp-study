@@ -31,14 +31,15 @@ public class TaskHandler {
 
     taskList.add(task);
   }
+  
 
   //다른 패키지에 있는 App 클래스가 다음 메서드를 호출할 수 있도록 공개한다.
   public void list() {
     System.out.println("[작업 목록]");
+    Object [] list = taskList.toArray();
 
-    Task[] list = taskList.toArray();
-
-    for (Task task : list) {
+    for (Object obj : list) {
+      Task task= (Task) obj;
       System.out.printf("%d, %s, %s, %s, %s\n",
           task.no, 
           task.content, 
