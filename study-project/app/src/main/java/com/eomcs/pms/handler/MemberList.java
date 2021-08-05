@@ -9,6 +9,13 @@ public class MemberList {
 
   
   public void add(Member member) {
+    if (size == members.length) {
+      Member [] arr = new Member[members.length + (members.length/2)];
+      for (int i =0; i<members.length; i++) {
+        arr[i] = members[i];
+      }
+      members = arr;
+    }
     this.members[this.size++] = member;
   }
   

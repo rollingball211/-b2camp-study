@@ -2,7 +2,7 @@ package com.eomcs.pms.handler;
 
 import com.eomcs.pms.domain.Board;
 
-public class BoardList {
+public class BoardList2 {
   static final int MAX_LENGTH = 5;
   Board[] boards = new Board[MAX_LENGTH];
   int size = 0;
