@@ -5,29 +5,9 @@ import com.eomcs.pms.domain.Board;
 import com.eomcs.util.Prompt;
 
 public class BoardHandler {
+BoardList boardList = new BoardList();
 
-static class Node {
-
-  Board board;
-  Node next;
   
-  public Node(Board board){
-    this.board = board;
-  }
-}
-
-
-  // 모든 게시판의 최대 배열 개수가 같기 때문에 다음 변수는 
-  // 그냥 static 필드로 남겨둔다.
-  static final int MAX_LENGTH = 5;
-
-  // 게시판 마다 따로 관리해야 하기 때문에 인스턴스 필드로 전환한다.
-  // => static 옵션을 뺀다.
-
-  int size = 0;
-  
-  Node head;
-  Node tail;
 
   public void add() {
     System.out.println("[새 게시글]");
@@ -39,49 +19,30 @@ static class Node {
     board.content = Prompt.inputString("내용? ");
     board.writer = Prompt.inputString("작성자? ");
     board.registeredDate = new Date(System.currentTimeMillis());
-
-    // 새 노드를 만든다. 생성자를 호출할 때, 노드에 담을 Board 객체 주소를 넘긴다. 
-    Node node = new Node(board);
-
-    if (head == null) {
-      tail = head = node;
-    } else {
-      // 기존에 tail이 가리키는 마지막 노드의 next 변수에 새 노드 주소를 저장한다.
-      tail.next = node;
-
-      // 새로 만든 노드를 마지막 노드로 설정한다. 
-      tail = node;
-    }
-
-    size++;
+    //    board.viewCount = 0; // 인스턴스 변수는 생성되는 순간 기본 값이 0으로 설정된다.
+    boardList.add(board);
+   
   }
 
   public void list() {
     System.out.println("[게시글 목록]");
-    if (head == null) {
-      return;
-    }
-
-    Node node = head;
-
-    do {
+    Board[] list = boardList.toArray();
+    for(Board board : list){
       System.out.printf("%d, %s, %s, %s, %d, %d\n", 
-          node.board.no, 
-          node.board.title, 
-          node.board.writer,
-          node.board.registeredDate,
-          node.board.viewCount, 
-          node.board.like);
-      node = node.next;
-    } while (node != null);
+          board.no, 
+          board.title, 
+          board.writer,
+          board.registeredDate,
+          board.viewCount, 
+          board.like);
+    }
   }
 
   public void detail() {
     System.out.println("[게시글 상세보기]");
     int no = Prompt.inputInt("번호? ");
 
-    Board board = findByNo(no);
-    
+    Board board = boardList.findByNo(no);
 
     if (board == null) {
       System.out.println("해당 번호의 게시글이 없습니다.");
@@ -99,9 +60,7 @@ static class Node {
     System.out.println("[게시글 변경]");
     int no = Prompt.inputInt("번호? ");
 
-   
-
-    Board board = findByNo(no);
+    Board board = boardList.findByNo(no);
 
     if (board == null) {
       System.out.println("해당 번호의 게시글이 없습니다.");
@@ -125,12 +84,8 @@ static class Node {
   public void delete() {
     System.out.println("[게시글 삭제]");
     int no = Prompt.inputInt("번호? ");
-    Board board = findByNo(no);
-    Node node = head;
 
-    // Board 인스턴스가 들어 있는 배열을 뒤져서
-    // 게시글 번호와 일치하는 Board 인스턴스를 찾는다. 
-    
+    Board board = boardList.findByNo(no);
 
     if (board == null) {
       System.out.println("해당 번호의 게시글이 없습니다.");
@@ -142,70 +97,17 @@ static class Node {
       System.out.println("게시글 삭제를 취소하였습니다.");
       return;
     }
+    boardList.remove(board);
     
-   
-    
-    
-    Node prev = null;
-    
-    while (node != null) {
-      if (node.board == board) {
-        if (node == head) {
-          head = node.next;
-        }else {
-          prev.next = node.next; //이전 노드와 다음 노드와 연결함
-        }
-        node.next = null; //다음 노드와의 연결을 끊음
-        
-        if(tail == node) {  //삭제할 현재 노드가 마지막 노드라면.
-          tail = prev; //이전 노드를 마지막 노드로 설정함.
-          
-        }
-        break;
-      }
-   // 현재 노드가 아니라면,
-      prev = node; // 현재 노드의 주소를 prev 변수에 저장하고,
-      node = node.next; // node 변수에는 다음 노드의 주소를 저장한다.
-    }
-
-    size--;
 
     System.out.println("게시글을 삭제하였습니다.");
   }
-    
-  
-    
-//    if (head == null) {
-//     System.out.println("삭제할 수 없습니다.");
-//     return;
-//    } else{
-//      // 삭제할 node를 null로 바꾼다.
-//      if(board.no == no) {
-//      tail.board = null;
-//      if(tail == node) {
-//        return;
-//      }
-//      tail.next= node;
-//      }
-//      size--;
-//      System.out.println("게시글을 삭제하였습니다.");
-//      // 새로 만든 노드를 마지막 노드로 설정한다.
-//      //만약 마지막 노드를 삭제했다면  뒤로 넘기지 않고 끝
-//  
-//  }
-  
-  private Board findByNo(int no) {
-    Node node = head;
-    
-    while (node != null) {
-      if (node.board.no == no) {
-        return node.board;
-      }
-      node = node.next;
-    }
-    return null;
-  }
+
+
+
+
 }
+
 
 
 

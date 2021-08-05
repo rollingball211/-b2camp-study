@@ -25,8 +25,7 @@ public class MenuGroup extends Menu {
     super(title);
     this.disablePrevMenu = disablePrevMenu;
   }
-  
-  
+
   public void setPrevMenuTitle(String prevMenuTitle) {
     this.prevMenuTitle = prevMenuTitle;
   }
