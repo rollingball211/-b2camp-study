@@ -6,7 +6,8 @@ import com.eomcs.util.Prompt;
 
 public class BoardHandler {
 //BoardList boardList = new BoardList();
-  BoardList2 boardList = new BoardList2();
+  //BoardList boardList = new BoardList();
+  ArrayList boardList = new ArrayList();
   
 
   public void add() {
@@ -45,7 +46,7 @@ public class BoardHandler {
     System.out.println("[게시글 상세보기]");
     int no = Prompt.inputInt("번호? ");
 
-    Board board = boardList.findByNo(no);
+    Board board = findByNo(no);
 
     if (board == null) {
       System.out.println("해당 번호의 게시글이 없습니다.");
@@ -63,7 +64,7 @@ public class BoardHandler {
     System.out.println("[게시글 변경]");
     int no = Prompt.inputInt("번호? ");
 
-    Board board = boardList.findByNo(no);
+    Board board = findByNo(no);
 
     if (board == null) {
       System.out.println("해당 번호의 게시글이 없습니다.");
@@ -88,7 +89,7 @@ public class BoardHandler {
     System.out.println("[게시글 삭제]");
     int no = Prompt.inputInt("번호? ");
 
-    Board board = boardList.findByNo(no);
+    Board board =   findByNo(no);
 
     if (board == null) {
       System.out.println("해당 번호의 게시글이 없습니다.");
@@ -107,6 +108,16 @@ public class BoardHandler {
   }
 
 
+  private Board findByNo(int no) {
+    Object[] arr = boardList.toArray();
+    for (Object obj : arr) {
+      Board board = (Board) obj;
+      if (board.no == no) {
+        return board;
+      }
+    }
+    return null;
+  }
 
 
 }
