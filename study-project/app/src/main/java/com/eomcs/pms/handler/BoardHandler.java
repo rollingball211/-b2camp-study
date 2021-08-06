@@ -5,10 +5,12 @@ import com.eomcs.pms.domain.Board;
 import com.eomcs.util.Prompt;
 
 public class BoardHandler {
-//BoardList boardList = new BoardList();
-  //BoardList boardList = new BoardList();
-  ArrayList boardList = new ArrayList();
-  
+
+  List boardList;
+
+  public BoardHandler(List boardList) {
+    this.boardList = boardList;
+  }
 
   public void add() {
     System.out.println("[새 게시글]");
@@ -20,17 +22,16 @@ public class BoardHandler {
     board.content = Prompt.inputString("내용? ");
     board.writer = Prompt.inputString("작성자? ");
     board.registeredDate = new Date(System.currentTimeMillis());
-    //    board.viewCount = 0; // 인스턴스 변수는 생성되는 순간 기본 값이 0으로 설정된다.
+
     boardList.add(board);
-   
   }
 
   public void list() {
     System.out.println("[게시글 목록]");
+
     Object[] list = boardList.toArray();
-    
-  
-    for(Object obj : list){
+
+    for (Object obj : list) {
       Board board = (Board) obj;
       System.out.printf("%d, %s, %s, %s, %d, %d\n", 
           board.no, 
@@ -89,7 +90,7 @@ public class BoardHandler {
     System.out.println("[게시글 삭제]");
     int no = Prompt.inputInt("번호? ");
 
-    Board board =   findByNo(no);
+    Board board = findByNo(no);
 
     if (board == null) {
       System.out.println("해당 번호의 게시글이 없습니다.");
@@ -101,12 +102,11 @@ public class BoardHandler {
       System.out.println("게시글 삭제를 취소하였습니다.");
       return;
     }
+
     boardList.remove(board);
-    
 
     System.out.println("게시글을 삭제하였습니다.");
   }
-
 
   private Board findByNo(int no) {
     Object[] arr = boardList.toArray();
@@ -118,8 +118,6 @@ public class BoardHandler {
     }
     return null;
   }
-
-
 }
 
 
