@@ -75,6 +75,6 @@ public class Exam05 {
 
     Letter letter2 = new ReportLetter();
     letter2.setContent("강의중!");
-    letter2.print();
+    letter2.print(); 
   }
 }

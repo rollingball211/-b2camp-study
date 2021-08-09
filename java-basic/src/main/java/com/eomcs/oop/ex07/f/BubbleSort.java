@@ -1,6 +1,6 @@
-package com.eomcs.oop.ex07.d;
+package com.eomcs.oop.ex07.f;
 
-public class BubbleSort extends Sorter {
+public class BubbleSort implements Sorter {
 
   @Override
   public void sort(int[] values) {
@@ -16,4 +16,4 @@ public class BubbleSort extends Sorter {
       }
     }
   }
-}   
+}
