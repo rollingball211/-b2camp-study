@@ -13,7 +13,7 @@ public class Exam0120 {
     
     My obj = new My();
     
-    // Object에서 상속 받은 메서드 
+    // Object에서 상속 받은 메서드  
     //
     // 1) toString()
     //    - 클래스 정보를 간단히 출력한다.

@@ -1,7 +1,7 @@
 // Object 클래스 - equals() 오버라이딩 
 package com.eomcs.basic.ex01;
 
-
+import java.util.Objects;
 
 public class Exam0131 {
   
@@ -39,7 +39,10 @@ public class Exam0131 {
     String email;
     int gender;
     boolean working;
-    
+    @Override
+    public int hashCode() {
+      return Objects.hash(age, email, gender, name, tel, working);
+    }
     @Override
     public boolean equals(Object obj) {
       if (this == obj)
@@ -49,29 +52,12 @@ public class Exam0131 {
       if (getClass() != obj.getClass())
         return false;
       My other = (My) obj;
-      if (age != other.age)
-        return false;
-      if (email == null) {
-        if (other.email != null)
-          return false;
-      } else if (!email.equals(other.email))
-        return false;
-      if (gender != other.gender)
-        return false;
-      if (name == null) {
-        if (other.name != null)
-          return false;
-      } else if (!name.equals(other.name))
-        return false;
-      if (tel == null) {
-        if (other.tel != null)
-          return false;
-      } else if (!tel.equals(other.tel))
-        return false;
-      if (working != other.working)
-        return false;
-      return true;
+      return age == other.age && Objects.equals(email, other.email) && gender == other.gender
+          && Objects.equals(name, other.name) && Objects.equals(tel, other.tel)
+          && working == other.working;
     }
+    
+    
     
 
   }

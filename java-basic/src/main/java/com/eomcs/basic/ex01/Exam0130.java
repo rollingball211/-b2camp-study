@@ -24,6 +24,7 @@ public class Exam0130 {
     // Object에서 상속 받은 equals()는 == 연산자와 마찬가지로 인스턴스가 같은지를 비교한다.
     // 만약 그 내용물이 같은지 비교하고 싶다면 equals()를 재정의 하라!
     System.out.println(obj1.equals(obj2));
+    System.out.println(obj1.name.equals(obj2.name));
 
   }
 
