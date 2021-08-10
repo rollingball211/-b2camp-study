@@ -57,6 +57,8 @@ public class Exam0173 {
     car.engine.cc = 2000;
     System.out.println(car2.engine.cc);
     
+    System.out.println(car.engine == car2.engine);
+    
     // 
     // Object의 clone()은 해당 객체의 필드 값만 복제한다.
     // 그 인스턴스 변수가 가리키고 있는 객체는 복제하지 않는다.
