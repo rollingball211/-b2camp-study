@@ -12,6 +12,6 @@ public class Exam0110 {
     } else {
       System.out.println("자동차를 점검하시기 바랍니다. 문제 발생!");
     }
-
+    
   }
 }

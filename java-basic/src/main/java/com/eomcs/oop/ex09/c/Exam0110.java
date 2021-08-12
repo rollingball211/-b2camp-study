@@ -25,19 +25,34 @@ public class Exam0110 {
     // ProtocolB 규칙 준수!
     @Override
     public void rule2() {System.out.println("rule2()");}
+    
+    
+    //인터페이스와 상관 없이 메서드 추가
+    public void m1() {
+      System.out.println("m1()");
+    }
   }
 
   void test() {
 
     ProtocolImpl obj = new ProtocolImpl();
 
-    // 1) 인터페이스 레퍼런스로 구현체의 주소 받기
+    // 1) 클래스의 레퍼런스 사용,
+    // 그 클래스에 정의된 메서드 호출 가능
+    // 그 클래스의 상위 클래스에 정의된 메서드 호출 가능
     ProtocolB b = obj;
+    obj.rule1();
+    obj.rule2();
+    obj.m1();
 
-    // 2) 메서드 호출
+    // 2) 인터페이스의 레퍼런스 사용
     // - 해당 인터페이스의 규칙에 따라서만 호출할 수 있다.
-    b.rule1(); // OK
-    b.rule2(); // OK
+    //인터페이스에 정의된 메서드 호출 가능
+    // 상위 인터페이스에 정의된 메서드 호출 가능
+    
+    b.rule1(); // OK ProtocolB.rule1();
+    b.rule2(); // OK ProtocolA.rule2();
+    //b.m1();
     System.out.println("-------------------------------");
 
     // 3) 수퍼 인터페이스 레퍼런스

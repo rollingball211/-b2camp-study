@@ -24,6 +24,7 @@ public abstract class AbstractCar implements CarSpec {
   public void off() {
     System.out.println("시동을 끈다.");
   }
+  //필요한 것만 상속함.
 
   // => 즉 인터페이스의 메서드 중에서 서브 클래스가 구현해야만 의미가 있는 메서드의 경우
   //    추상 클래스에서 미리 구현할 필요가 없다.
