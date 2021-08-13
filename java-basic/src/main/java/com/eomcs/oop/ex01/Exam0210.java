@@ -18,6 +18,7 @@ public class Exam0210 {
 
     // 2) 메모리 주소를 저장할 레퍼런스를 준비한다.
     Score s1, s2, s3;
+
     // 3) 설계도에 따라 메모리를 준비하고 그 주소를 각 레퍼런스에 저장한다.
     s1 = new Score();
     s2 = new Score();

@@ -35,7 +35,6 @@ public class Exam0310 {
      */
 
     System.out.printf("절대값=%d\n", result);
-
   }
 }
 

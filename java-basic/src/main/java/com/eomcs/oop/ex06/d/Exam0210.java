@@ -13,23 +13,16 @@ class Sedan extends Car {
     System.out.println("Sedan.run() 호출됨!");
   }
 }
-class Tico extends Car{
-  @Override
-  public void run() {
-    System.out.println("tico.run() 호출!");
-  }
-}
 
 public class Exam0210 {
   public static void main(String[] args) {
     // 1) 다형적 변수의 사용법에 따라,
     //    - super 클래스 레퍼런스로 하위 클래스의 인스턴스를 가리킨다.
     Car car = new Sedan();
-    Car c1  = new Tico();
+
     // 2) 오버라이딩 메서드 호출 규칙에 따라,
     //    - 레퍼런스가 실제 가리키는 객체의 클래스부터 메서드를 찾아 올라간다.
     car.run();
-    c1.run();
 
   }
 }

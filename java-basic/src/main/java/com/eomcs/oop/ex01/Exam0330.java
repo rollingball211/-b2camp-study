@@ -15,7 +15,6 @@ public class Exam0330 {
 
     Score s1 = new Score();
     Score s2 = new Score();
-    
 
     s2 = s1;
     // s1의 주소는 s2에도 저장되었다.
@@ -25,9 +24,6 @@ public class Exam0330 {
     // s2이 이전에 가리켰던 객체처럼 주소를 알고 있는 변수가 줄어들면 레퍼런스 카운트를 감소시킨다.
     // 레퍼런스 카운트가 0인 상태가 "가비지(garbage)"이다.
 
-    
-    //package class 
-   
   }
 }
 

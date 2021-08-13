@@ -9,56 +9,39 @@ package com.eomcs.oop.ex06.c;
 //
 
 public class Exam0421 {
-  static class X {
-    void m1() {
-      System.out.println("X의 m1()");
-    }
-    void m2() {
-      System.out.println("X의 m2()");
-    }
-  }
 
+  static class X {
+    void m1() {System.out.println("X의 m1()");}
+    void m2() {System.out.println("X의 m2()");}
+  }
 
   static class X2 extends X {
-    @Override
-    void m1() {
-      System.out.println("X2의 m1()");
-    }
+    @Override void m1() {System.out.println("X2의 m1()");}
   }
-
 
   static class X3 extends X2 {
-    @Override
-    void m2() {
-      System.out.println("X3의 m2()");
+    @Override void m2() {System.out.println("X3의 m2()");}
+  }
+
+  static class X4 extends X3 {
+    @Override void m1() {System.out.println("X4의 m1()");}
+    void test() {
+      this.m1(); // X5의 m1() : this가 실제 가리키는 인스턴스 클래스를 기준으로 메서드를 찾아 올라 간다.
+      super.m1(); // X2의 m1() : test()가 소속된 클래스를 기준으로 수퍼 클래스부터 메서드를 찾아 올라간다.
+
+      this.m2(); // X5의 m2()
+      super.m2(); // X3의 m2()
     }
   }
 
-
-  static class X4 extends X3 {
-    @Override
-    void m1() {
-      System.out.println("X4의 m1()");
-    }
-
-    void test() {
-      this.m1(); // X4의 m1()
-      super.m1(); // X2의 m1()
-
-      this.m2(); // X3의 m2()
-      super.m2(); // X3의 m2()
-
-      //      super.super.m1(); // 컴파일 오류! 이런 문법은 없다! 무협지 문법!
-
-    }
+  static class X5 extends X4 {
+    @Override void m1() {System.out.println("X5의 m1()");}
+    @Override void m2() {System.out.println("X5의 m2()");}
   }
 
   public static void main(String[] args) {
-    X4 obj = new X4();
+    X5 obj = new X5();
     obj.test();
-
-    // 레퍼런스에서 super를 사용할 수 없다.
-    //    obj.super.m1(); // 컴파일 오류!
   }
 }
 

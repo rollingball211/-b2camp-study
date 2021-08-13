@@ -17,7 +17,7 @@ public class Exam0210 {
     result = minus(result, 1);
     result = multiple(result, 7);
     result = divide(result, 3);
-    
+
     System.out.printf("result = %d\n", result);
   }
 

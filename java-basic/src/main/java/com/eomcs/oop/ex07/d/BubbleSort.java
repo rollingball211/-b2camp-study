@@ -16,4 +16,4 @@ public class BubbleSort extends Sorter {
       }
     }
   }
-}   
+}

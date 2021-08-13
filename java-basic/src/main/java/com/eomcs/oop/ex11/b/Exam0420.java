@@ -5,7 +5,6 @@ import static com.eomcs.oop.ex11.b.E.m1;
 import static com.eomcs.oop.ex11.b.E.v1;
 import static com.eomcs.oop.ex11.b.sub.M.m2;
 import static com.eomcs.oop.ex11.b.sub.M.v2;
-
 // 중첩 클래스를 import 할 때는 static을 적지 않는다.
 import com.eomcs.oop.ex11.b.E.X;
 import com.eomcs.oop.ex11.b.sub.M.Y;
@@ -26,6 +25,9 @@ public class Exam0420 {
 
   public static void main(String[] args) {
     // 같은 패키지 클래스의 스태틱 멤버
+    // => import static으로 미리 스태틱 멤버의 패키지 정보를 알려주면, 
+    // 마치 같은 클래스의 멤버인 양 
+    // 
     v1 = 100;
     m1();
     X obj = new X();
