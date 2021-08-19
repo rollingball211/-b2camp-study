@@ -24,6 +24,7 @@ public class ProjectHandler {
     project.setContent(Prompt.inputString("내용? "));
     project.setStartDate(Prompt.inputDate("시작일? "));
     project.setEndDate(Prompt.inputDate("종료일? "));
+
     project.setOwner(memberHandler.promptMember("만든이?(취소: 빈 문자열) "));
     if (project.getOwner() == null) {
       System.out.println("프로젝트 등록을 취소합니다.");

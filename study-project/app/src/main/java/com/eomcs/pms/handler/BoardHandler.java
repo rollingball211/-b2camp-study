@@ -18,7 +18,7 @@ public class BoardHandler {
     Board board = new Board();
 
     board.setNo(Prompt.inputInt("번호? "));
-    board.setTitle(Prompt.inputString("제목? ")); 
+    board.setTitle(Prompt.inputString("제목? "));
     board.setContent(Prompt.inputString("내용? "));
     board.setWriter(Prompt.inputString("작성자? "));
     board.setRegisteredDate(new Date(System.currentTimeMillis()));
@@ -54,11 +54,12 @@ public class BoardHandler {
       return;
     }
 
-    System.out.printf("제목: %s\n", board.getNo());
-    System.out.printf("내용: %s\n", board.getTitle());
+    System.out.printf("제목: %s\n", board.getTitle());
+    System.out.printf("내용: %s\n", board.getContent());
     System.out.printf("작성자: %s\n", board.getWriter());
     System.out.printf("등록일: %s\n", board.getRegisteredDate());
-    board.setViewCount(board.getViewCount() + 1);    
+
+    board.setViewCount(board.getViewCount() + 1);
     System.out.printf("조회수: %d\n", board.getViewCount());
   }
 
@@ -75,7 +76,6 @@ public class BoardHandler {
 
     String title = Prompt.inputString(String.format("제목(%s)? ", board.getTitle()));
     String content = Prompt.inputString(String.format("내용(%s)? ", board.getContent()));
-
 
     String input = Prompt.inputString("정말 변경하시겠습니까?(y/N) ");
     if (input.equalsIgnoreCase("n") || input.length() == 0) {

@@ -17,12 +17,12 @@ public class MemberHandler {
 
     Member member = new Member();
 
-    member.setNo(Prompt.inputInt("번호? ")); 
-    member.setName( Prompt.inputString("이름? "));
+    member.setNo(Prompt.inputInt("번호? "));
+    member.setName(Prompt.inputString("이름? "));
     member.setEmail(Prompt.inputString("이메일? "));
-    member.setPassword( Prompt.inputString("암호? "));
+    member.setPassword(Prompt.inputString("암호? "));
     member.setPhoto(Prompt.inputString("사진? "));
-    member.setTel( Prompt.inputString("전화? "));
+    member.setTel(Prompt.inputString("전화? "));
     member.setRegisteredDate(new Date(System.currentTimeMillis()));
 
     memberList.add(member);
@@ -75,7 +75,7 @@ public class MemberHandler {
 
     String name = Prompt.inputString("이름(" + member.getName()  + ")? ");
     String email = Prompt.inputString("이메일(" + member.getEmail() + ")? ");
-    String password = Prompt.inputString("암호? " + member.getPassword());
+    String password = Prompt.inputString("암호? ");
     String photo = Prompt.inputString("사진(" + member.getPhoto() + ")? ");
     String tel = Prompt.inputString("전화(" + member.getTel() + ")? ");
 
