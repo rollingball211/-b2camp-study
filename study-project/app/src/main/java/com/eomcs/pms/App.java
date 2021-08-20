@@ -1,5 +1,7 @@
 package com.eomcs.pms;
 
+import com.eomcs.pms.domain.Board;
+import com.eomcs.pms.domain.Project;
 import com.eomcs.pms.handler.ArrayList;
 import com.eomcs.pms.handler.BoardHandler;
 import com.eomcs.pms.handler.LinkedList;
@@ -13,9 +15,9 @@ import com.eomcs.util.Prompt;
 
 public class App {
 
-  List boardList = new ArrayList();
-  List memberList = new LinkedList();
-  List projectList = new ArrayList();
+  List<Board> boardList = new ArrayList<Board>();
+  List  memberList = new LinkedList();
+  List<Project> projectList = new ArrayList<Project>();
   List taskList = new LinkedList();
 
   BoardHandler boardHandler = new BoardHandler(boardList);

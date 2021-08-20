@@ -6,9 +6,9 @@ import com.eomcs.util.Prompt;
 
 public class BoardHandler {
 
-  List boardList;
+  List<Board> boardList;
 
-  public BoardHandler(List boardList) {
+  public BoardHandler(List<Board> boardList) {
     this.boardList = boardList;
   }
 

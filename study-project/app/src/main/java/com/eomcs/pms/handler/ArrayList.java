@@ -1,12 +1,12 @@
 package com.eomcs.pms.handler;
 
-public class ArrayList extends AbstractList {
+public class ArrayList<E> extends AbstractList<E> {
 
   static final int MAX_LENGTH = 5;
 
   Object[] list = new Object[MAX_LENGTH];
 
-  public void add(Object obj) {
+  public void add(E obj) {
     if (size == list.length) {
       Object[] arr = new Object[list.length + (list.length >> 1)];
       for (int i = 0; i < size; i++) {
@@ -16,7 +16,7 @@ public class ArrayList extends AbstractList {
     }
     this.list[this.size++] = obj;
   }
-
+  @Override
   public Object[] toArray() {
     Object[] arr = new Object[this.size]; // 배열에 저장된 값을 담을 정도의 크기를 가진 새 배열을 만든다.
     for (int i = 0; i < this.size; i++) { // 배열에 저장된 값을 새 배열에 복사한다.
@@ -24,8 +24,8 @@ public class ArrayList extends AbstractList {
     }
     return arr; // 새 배열을 리턴한다.
   }
-
-  public boolean remove(Object obj) {
+@Override
+  public boolean remove(E obj) {
     int index = indexOf(obj);
     if (index == -1) {
       return false;
@@ -38,8 +38,8 @@ public class ArrayList extends AbstractList {
 
     return true;
   }
-
-  private int indexOf(Object obj) {
+  @Override
+  private int indexOf(E obj) {
     for (int i = 0; i < this.size; i++) {
       if (this.list[i] == obj) {
         return i;
@@ -49,21 +49,21 @@ public class ArrayList extends AbstractList {
   }
 
   @Override
-  public Object get(int index) {
+  public E get(int index) {
     if (index < 0 || index >= this.size) { // 유효하지 않은 인덱스인 경우
       return null;
     }
-    return this.list[index];
+    return (E)this.list[index];
   }
 
   @Override
-  public Object remove(int index) {
+  public E remove(int index) {
 
     if (index < 0 || index >= this.size) { // 인덱스가 무효하다면
       return null;
     }
 
-    Object deleted = this.list[index]; // 삭제할 항목 저장
+    E deleted =  (E)this.list[index]; // 삭제할 항목 저장
 
     for (int i = index + 1; i < this.size; i++) {
       this.list[i - 1] = this.list[i];
