@@ -1,4 +1,4 @@
-// 인터페이스 구현체를 만드는 다양한 방법
+j// 인터페이스 구현체를 만드는 다양한 방법
 package com.eomcs.oop.ex12;
 
 public class Exam0810 {

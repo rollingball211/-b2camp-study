@@ -3,7 +3,7 @@ package com.eomcs.basic.ex03;
 
 import java.util.ArrayList;
 
-public class Exam0210 {
+public class Exam0211 {
   public static void main(String[] args) {
 
     class Member {
@@ -58,9 +58,23 @@ public class Exam0210 {
     list.add(m2);
     list.add(m3);
 
-    for (int i = 0; i < list.size(); i++) {
-    Member m = list.get(i);
-    System.out.println("이름 " + m.name +" 나이 " +  m.age);
-    }
+
+//    Member [] arr = new Member[list.size()];
+//    list.toArray(arr);
+//    
+//    for (Member m : arr) {
+//      System.out.printf( "%s(%d) \n ", m.name ,m.age);
+//    }
+//    
+    
+    
+//    Iterator<Member> Iterator = list.iterator();
+//    while( Iterator.hasNext()) {
+//      Member m = Iterator.next();
+//      System.out.printf("%s(%d) \n ", m.name ,m.age );
+//      
+ //   }
+  
+    
   }
 }
