@@ -13,16 +13,43 @@ public class Exam0310 {
 
   public static void main(String[] args) {
     // 로컬 클래스
-    class MyPlayer implements Player {
-      @Override
-      public void play() {
-        System.out.println("실행!");
-      }
-    }
-
-    testPlayer(new MyPlayer());
-
-  }
+//    class MyPlayer implements Player {
+//      @Override
+//      public void play() {
+//        System.out.println("실행!");
+//      }
+//    }
+//
+//    testPlayer(new MyPlayer());
+//
+//  }
+    
+    //1번 
+//     Player player = new Player() {
+//      @Override
+//      public void play() {
+//        System.out.println("실행!");
+//      }
+//    };
+//    
+//    testPlayer(player);
+ 
+      
+    
+    //2번
+//    testPlayer(new Player() {
+//      @Override
+//      public void play() {
+//        System.out.println("실행!");
+//      }
+//    });
+    
+   //3번
+    
+    testPlayer (
+        () -> System.out.println("실행")
+    );
+}
 }
 
 

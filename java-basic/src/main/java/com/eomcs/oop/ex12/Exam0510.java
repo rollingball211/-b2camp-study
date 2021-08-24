@@ -22,6 +22,21 @@ public class Exam0510 {
     // => 규격? 파라미터 타입 및 개수, 리턴 타입
     // => 문법:
     //    클래스명::메서드명
+    
+    //1. 익명 클래스 활용.
+    Calculator obj1 = new Calculator() {
+      @Override
+      public int compute (int x, int y) {
+        return x * y ;
+      }
+    };
+    
+    //2. 람다 문법 활용
+    Calculator obj2 = (x,y) -> x * y ;
+    
+    //3. 기존에 장성한 클래스의 스태틱 메서드 중에서
+    //인터페이스의 메서드 규격과 일치하는 메소드가 있다면,
+    
     Calculator c1 = MyCalculator::plus;
     Calculator c2 = MyCalculator::minus;
     Calculator c3 = MyCalculator::multiple;
