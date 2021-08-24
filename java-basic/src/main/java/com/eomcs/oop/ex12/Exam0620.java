@@ -34,10 +34,11 @@ public class Exam0620 {
 
     // 인스턴스 메서드 레퍼런스로 Calculator 구현체를 만드는 방법
     //
-    // Iterest i1 = 보통예금::year;
+   //  Interest i1 = 보통예금::year;
 
     // 위의 코드는 내부적으로 다음과 같다.
     //
+    // Interst i12 = money -> 보통예금.year(money);
     Interest i1 = new Interest() {
       @Override
       public double compute(int money) {
