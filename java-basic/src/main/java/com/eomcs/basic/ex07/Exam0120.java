@@ -14,7 +14,7 @@ public class Exam0120 {
     list.add("ccc");
 
     // ArrayList는 값을 중복해서 넣을 수 있다.
-    list.add("aaa");
+    list.add("aaa");  //위에서 입력한 aaa와 인스턴스가 달라도 넣을 수 있음.
     list.add("bbb");
 
     // null을 넣을 수 있다.

@@ -27,6 +27,7 @@ public class Exam0110 {
 
     // Set은 집합의 특성을 따른다.
     // 같은 값을 중복해서 넣을 수 없다.
+  
     set.add("aaa");
     set.add("bbb");
 
