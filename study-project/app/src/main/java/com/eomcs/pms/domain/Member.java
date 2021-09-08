@@ -1,8 +1,11 @@
-package main.java.com.eomcs.pms.domain;
+package com.eomcs.pms.domain;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class Member {
+@SuppressWarnings("serial")
+public class Member implements Serializable {
+
   private int no;
   private String name;
   private String email;

@@ -1,9 +1,11 @@
-package main.java.com.eomcs.pms.domain;
+package com.eomcs.pms.domain;
 
+import java.io.Serializable;
 import java.sql.Date;
 
+@SuppressWarnings("serial")
+public class Task implements Serializable {
 
-public class Task {
   private int no;
   private String content;
   private Date deadline;
@@ -54,4 +56,3 @@ public class Task {
   }
 
 }
-

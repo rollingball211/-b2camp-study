@@ -1,4 +1,4 @@
-package main.java.com.eomcs.util;
+package com.eomcs.util;
 
 import java.sql.Date;
 import java.util.Scanner;
