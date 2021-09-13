@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.Stack;
 
 public class Exam0160 {
-
+  `
   public static void main(String[] args) {
     Stack<String> stack = new Stack<>();
 

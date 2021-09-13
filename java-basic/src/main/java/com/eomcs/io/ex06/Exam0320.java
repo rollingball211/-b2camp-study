@@ -14,17 +14,16 @@ public class Exam0320 {
     int len = 0;
 
     long startTime = System.currentTimeMillis(); // 밀리초
-
     while ((len = in.read(buf)) != -1)
       out.write(buf, 0, len);
 
     long endTime = System.currentTimeMillis();
 
     System.out.println(endTime - startTime);
-
     in.close();
     out.close();
   }
+
 
 }
 
