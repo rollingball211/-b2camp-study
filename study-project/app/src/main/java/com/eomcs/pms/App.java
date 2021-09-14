@@ -3,10 +3,7 @@ package com.eomcs.pms;
 import static com.eomcs.menu.Menu.ACCESS_ADMIN;
 import static com.eomcs.menu.Menu.ACCESS_GENERAL;
 import static com.eomcs.menu.Menu.ACCESS_LOGOUT;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -113,102 +110,27 @@ public class App {
   }
 
   void service() {
-    loadMembers();
-    loadBoards();
-    loadProjects();
 
     createMainMenu().execute();
     Prompt.close();
 
-    saveMembers();
-    saveBoards();
-    saveProjects();
-  }
-
-  @SuppressWarnings("unchecked")
-  private void loadBoards() {
-    try (ObjectInputStream in = new ObjectInputStream(
-        new FileInputStream("board.data3"))) {
-
-      boardList.addAll((List<Board>) in.readObject());
-
-      System.out.println("게시글 데이터 로딩 완료!");
-
-    } catch (Exception e) {
-      System.out.println("파일에서 게시글 데이터를 읽어 오는 중 오류 발생!");
-      e.printStackTrace();
-    }
-  }
-
-  private void saveBoards() {
-    try (ObjectOutputStream out = new ObjectOutputStream(
-        new FileOutputStream("board.data3"))) {
-
-      out.writeObject(boardList);
-
-      System.out.println("게시글 데이터 저장 완료!");
+    // 게시글 데이터를 CSV 형식으로 출력한다.
+    try (FileWriter out = new FileWriter("board.csv")) {
+      for (Board board : boardList) {
+        out.write(String.format("%d,%s,%s,%s,%d,%d,%d,%s\n",
+            board.getNo(),
+            board.getTitle(),
+            board.getContent(),
+            board.getRegisteredDate(),
+            board.getViewCount(),
+            board.getLike(),
+            board.getWriter().getNo(),
+            board.getWriter().getName()));
+      }
+      System.out.println("게시글 데이터 출력 완료!");
 
     } catch (Exception e) {
-      System.out.println("게시글 데이터를 파일에 저장 중 오류 발생!");
-      e.printStackTrace();
-    }
-  }
-
-  @SuppressWarnings("unchecked")
-  private void loadMembers() {
-    try (ObjectInputStream in = new ObjectInputStream(
-        new FileInputStream("member.data3"))) {
-
-      memberList.addAll((List<Member>) in.readObject());
-
-      System.out.println("회원 데이터 로딩 완료!");
-
-    } catch (Exception e) {
-      System.out.println("파일에서 회원 데이터를 읽어 오는 중 오류 발생!");
-      e.printStackTrace();
-    }
-  }
-
-  private void saveMembers() {
-    try (ObjectOutputStream out = new ObjectOutputStream(
-        new FileOutputStream("member.data3"))) {
-
-      out.writeObject(memberList);
-
-      System.out.println("회원 데이터 저장 완료!");
-
-    } catch (Exception e) {
-      System.out.println("회원 데이터를 파일에 저장 중 오류 발생!");
-      e.printStackTrace();
-    }
-  }
-
-  @SuppressWarnings("unchecked")
-  private void loadProjects() {
-    try (ObjectInputStream in = new ObjectInputStream(
-        new FileInputStream("project.data3"))) {
-
-      projectList.addAll((List<Project>) in.readObject());
-
-      System.out.println("프로젝트 데이터 로딩 완료!");
-
-    } catch (Exception e) {
-      System.out.println("파일에서 프로젝트 데이터를 읽어 오는 중 오류 발생!");
-      e.printStackTrace();
-    }
-  }
-
-  private void saveProjects() {
-    try (ObjectOutputStream out = new ObjectOutputStream(
-        new FileOutputStream("project.data3"))) {
-
-      out.writeObject(projectList);
-
-      System.out.println("프로젝트 데이터 저장 완료!");
-
-    } catch (Exception e) {
-      System.out.println("프로젝트 데이터를 파일에 저장 중 오류 발생!");
-      e.printStackTrace();
+      System.out.println("게시글 데이터 출력 오류!");
     }
   }
 
