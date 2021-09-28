@@ -1,5 +1,6 @@
 package com.eomcs.pms;
 
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
@@ -45,9 +46,13 @@ public class ServerApp {
         detailBoard(out, in);
 
       } else {
+        System.out.println(11111);
         in.readLine();
+        System.out.println(22222);
+        out.println("success");
         out.println(command);
         out.flush();
+        System.out.println(33333);
       }
     }
 
@@ -92,20 +97,9 @@ public class ServerApp {
 
     board.setWriter(m);
 
+
     out.println("success");
     out.println(new Gson().toJson(board));
     out.flush();
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
