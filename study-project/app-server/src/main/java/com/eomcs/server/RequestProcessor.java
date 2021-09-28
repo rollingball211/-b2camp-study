@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import com.eomcs.pms.table.BoardTable;
+import com.google.gson.Gson;
 
 //역할
 // - Client와 통신하는 역할.
@@ -15,7 +17,10 @@ public class RequestProcessor implements AutoCloseable {
   PrintWriter out;
   BufferedReader in;
 
+  BoardTable boardTable = new BoardTable();
+
   public RequestProcessor(Socket socket) throws Exception {
+
     this.socket = socket;
     out = new PrintWriter(socket.getOutputStream());
     in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -40,7 +45,22 @@ public class RequestProcessor implements AutoCloseable {
         out.flush();
         break;
 
-      } else {
+      } else if (command.startsWith("/board/")) {
+        Request request = new Request(command, in.readLine());
+        Response response = new Response();
+
+        boardTable.execute(request, response);
+
+        //response 객체에 보관된 실행결과를 클라이언트에게 보냄.
+
+        out.println(response.status);
+        if (response.getValue() != null) {
+          out.println(new Gson().toJson(response.getValue()));
+        } else {
+          out.println();
+        }
+        out.flush();
+      } else  {
         in.readLine();
         out.println("success");
         out.println(command);

@@ -20,7 +20,10 @@ public class Request {
     return command;
   }
 
-  public <T> T getObject(Class<T> type) {
+  public <T> T getValue(Class<T> type) {
+    if (jsonData == null || jsonData.length() == 0) {
+      return null;
+    }
     return new Gson().fromJson(this.jsonData,type);
   }
 }
