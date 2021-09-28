@@ -30,7 +30,7 @@ public class ClientApp {
       } else {
         requestAgent.request(input, null);
 
-        if (requestAgent.getStatus().equals("success")) {
+        if (requestAgent.getStatus().equals(RequestAgent.SUCCESS)) {
           String result = requestAgent.getObject(String.class);
           System.out.println(">>> " + result);
 
@@ -67,7 +67,7 @@ public class ClientApp {
     requestAgent.request("/board/add", board);
 
     //서버가 보낸 결과 확인
-    if (requestAgent.getStatus().equals("success")) {
+    if (requestAgent.getStatus().equals(RequestAgent.SUCCESS)) {
       System.out.println("게시글 저장 성공!");
     } else {
       System.out.println("게시글 저장 실패!");
@@ -86,7 +86,7 @@ public class ClientApp {
 
 
     //서버가 보낸 결과 확인
-    if (requestAgent.getStatus().equals("success")) {
+    if (requestAgent.getStatus().equals(RequestAgent.SUCCESS)) {
       Board board = requestAgent.getObject(Board.class);
       System.out.println(board);
 

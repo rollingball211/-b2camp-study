@@ -11,6 +11,9 @@ import com.google.gson.Gson;
 //- 통신 프로토콜에 맞춰 서버에게 요청을 전달하고 응답을 받는 일을 함.
 public class RequestAgent implements AutoCloseable {
 
+  public static final String SUCCESS = "success";
+  public static final String FAIL = "fail";
+
   String ip;
   int port;
   Socket socket;

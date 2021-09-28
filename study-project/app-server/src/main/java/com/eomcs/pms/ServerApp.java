@@ -33,6 +33,7 @@ public class ServerApp {
 
       if (command.equalsIgnoreCase("quit")) {
         in.readLine();
+        out.println("success");
         out.println("goodbye");
         out.flush();
         break;
@@ -67,6 +68,7 @@ public class ServerApp {
     System.out.println(board);
 
     out.println("success");
+    out.println();
     out.flush();
   }
 
@@ -90,6 +92,7 @@ public class ServerApp {
 
     board.setWriter(m);
 
+    out.println("success");
     out.println(new Gson().toJson(board));
     out.flush();
   }
