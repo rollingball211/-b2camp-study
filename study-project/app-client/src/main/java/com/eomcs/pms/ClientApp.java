@@ -82,6 +82,7 @@ public class ClientApp {
 
     //command 객체 준비.
     commandMap.put("/member/add", new MemberAddHandler(requestAgent));
+    commandMap.put("/member/list", new MemberAddHandler(requestAgent));
   }
 
 

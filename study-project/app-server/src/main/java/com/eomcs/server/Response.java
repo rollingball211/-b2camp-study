@@ -9,6 +9,13 @@ public class Response {
   public static final String SUCCESS = "success";
   public static final String FAIL = "fail";
 
+  public Response() {}
+
+  public Response(String status , Object value) {
+    this.status = status;
+    this.value = value;
+  }
+
   public String getStatus() {
     return status;
   }

@@ -1,5 +1,6 @@
 package com.eomcs.pms.handler;
 
+import java.io.IOException;
 import java.sql.Date;
 import com.eomcs.pms.domain.Board;
 import com.eomcs.request.RequestAgent;
@@ -14,7 +15,7 @@ public class BoardAddHandler implements Command{
   }
 
   @Override
-  public void execute(CommandRequest request) {
+  public void execute(CommandRequest request) throws IOException{
     System.out.println("[새 게시글]");
 
     Board board = new Board();
@@ -26,7 +27,13 @@ public class BoardAddHandler implements Command{
     //   board.setWriter(AuthLoginHandler.getLoginUser());
     board.setRegisteredDate(new Date(System.currentTimeMillis()));
 
-    boardList.add(board);
+    requestAgent.request("board.insert", board);
+
+    if (requestAgent.getStatus().equals(RequestAgent.SUCCESS)) {
+      System.out.println("게시물을 등록했습니다.");
+    }else {
+      System.out.println("게시물 등록을 실패했습니다.");
+    }
   }
 }
 
