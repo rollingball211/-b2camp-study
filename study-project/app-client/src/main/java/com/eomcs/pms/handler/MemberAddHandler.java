@@ -31,8 +31,8 @@ public class MemberAddHandler implements Command {
 
     if (requestAgent.getStatus().equals(RequestAgent.SUCCESS)) {
       System.out.println("회원을 등록했습니다.");
-    }else {
-      System.out.println("회원 등록을 실패했습니다.");
+    } else {
+      System.out.println("회원 등록 실패!");
     }
   }
 }

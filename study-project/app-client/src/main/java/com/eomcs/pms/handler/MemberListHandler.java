@@ -4,16 +4,16 @@ import java.util.Collection;
 import com.eomcs.pms.domain.Member;
 import com.eomcs.request.RequestAgent;
 
-public class MemberListHandler implements Command{
+public class MemberListHandler implements Command {
 
   RequestAgent requestAgent;
 
-  public MemberListHandler( RequestAgent requestAgent) {
+  public MemberListHandler(RequestAgent requestAgent) {
     this.requestAgent = requestAgent;
   }
 
   @Override
-  public void execute(CommandRequest request) throws Exception{
+  public void execute(CommandRequest request) throws Exception {
     System.out.println("[회원 목록]");
 
     requestAgent.request("member.selectList", null);

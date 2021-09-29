@@ -1,17 +1,18 @@
 package com.eomcs.server;
 
-//클라이언트에게 응답
+// 역할
+// - 클라이언트에게 응답할 정보를 보관하는 일을 한다.
 public class Response {
-
-  String status;
-  Object value;
 
   public static final String SUCCESS = "success";
   public static final String FAIL = "fail";
 
+  String status;
+  Object value;
+
   public Response() {}
 
-  public Response(String status , Object value) {
+  public Response(String status, Object value) {
     this.status = status;
     this.value = value;
   }
@@ -28,16 +29,4 @@ public class Response {
   public void setValue(Object value) {
     this.value = value;
   }
-  public static String getSuccess() {
-    return SUCCESS;
-  }
-  public static String getFail() {
-    return FAIL;
-  }
-
-
-
-
-
-
 }
