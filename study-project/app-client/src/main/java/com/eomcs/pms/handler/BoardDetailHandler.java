@@ -1,16 +1,17 @@
 package com.eomcs.pms.handler;
 
 import java.util.HashMap;
+import com.eomcs.pms.dao.BoardDao;
 import com.eomcs.pms.domain.Board;
 import com.eomcs.request.RequestAgent;
 import com.eomcs.util.Prompt;
 
 public class BoardDetailHandler implements Command {
 
-  RequestAgent requestAgent;
+  BoardDao boardDao;
 
-  public BoardDetailHandler(RequestAgent requestAgent) {
-    this.requestAgent = requestAgent;
+  public BoardAddHandler(BoardDao boardDao) {
+    this.boardDao = boardDao;
   }
 
   @Override

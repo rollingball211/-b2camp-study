@@ -1,16 +1,17 @@
 package com.eomcs.pms.handler;
 
 import java.sql.Date;
+import com.eomcs.pms.dao.BoardDao;
 import com.eomcs.pms.domain.Board;
 import com.eomcs.request.RequestAgent;
 import com.eomcs.util.Prompt;
 
 public class BoardAddHandler implements Command {
 
-  RequestAgent requestAgent;
+  BoardDao boardDao;
 
-  public BoardAddHandler(RequestAgent requestAgent) {
-    this.requestAgent = requestAgent;
+  public BoardAddHandler(BoardDao boardDao) {
+    this.boardDao = boardDao;
   }
 
   @Override

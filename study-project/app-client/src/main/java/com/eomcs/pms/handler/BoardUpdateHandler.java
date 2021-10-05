@@ -1,17 +1,15 @@
 package com.eomcs.pms.handler;
 
 import java.util.HashMap;
+import com.eomcs.pms.dao.BoardDao;
 import com.eomcs.pms.domain.Board;
 import com.eomcs.request.RequestAgent;
 import com.eomcs.util.Prompt;
 
 public class BoardUpdateHandler implements Command {
 
-  RequestAgent requestAgent;
+  BoardDao boardDao;
 
-  public BoardUpdateHandler(RequestAgent requestAgent) {
-    this.requestAgent = requestAgent;
-  }
 
   @Override
   public void execute(CommandRequest request) throws Exception {
@@ -30,10 +28,10 @@ public class BoardUpdateHandler implements Command {
 
     Board board = requestAgent.getObject(Board.class);
 
-    //    if (board.getWriter().getNo() != AuthLoginHandler.getLoginUser().getNo()) {
-    //      System.out.println("변경 권한이 없습니다.");
-    //      return;
-    //    }
+    if (board.getWriter().getNo() != AuthLoginHandler.getLoginUser().getNo()) {
+      System.out.println("변경 권한이 없습니다.");
+      return;
+    }
 
     String title = Prompt.inputString(String.format("제목(%s)? ", board.getTitle()));
     String content = Prompt.inputString(String.format("내용(%s)? ", board.getContent()));

@@ -1,16 +1,18 @@
 package com.eomcs.pms.handler;
 
 import java.util.Collection;
+import com.eomcs.pms.dao.BoardDao;
 import com.eomcs.pms.domain.Board;
 import com.eomcs.request.RequestAgent;
 
 public class BoardListHandler implements Command {
 
-  RequestAgent requestAgent;
+  BoardDao boardDao;
 
-  public BoardListHandler(RequestAgent requestAgent) {
-    this.requestAgent = requestAgent;
+  public BoardAddHandler(BoardDao boardDao) {
+    this.boardDao = boardDao;
   }
+
 
   @Override
   public void execute(CommandRequest request) throws Exception {
