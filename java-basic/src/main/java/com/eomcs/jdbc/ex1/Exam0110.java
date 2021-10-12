@@ -66,7 +66,6 @@ public class Exam0110 {
       java.sql.Driver driver3 = DriverManager.getDriver("jdbc:sqlserver://");
       System.out.println(driver3);
 
-
     } catch (SQLException e) {
       e.printStackTrace();
     }
